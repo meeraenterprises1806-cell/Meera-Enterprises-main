@@ -1,0 +1,288 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import { use, useEffect, useState } from "react";
+import AdminShell from "@/components/admin/AdminShell";
+import ImageUpload from "@/components/ImageUpload";
+import MultiImageUpload from "@/components/MultiImageUpload";
+
+interface Category {
+  id: string;
+  name: string;
+  slug: string;
+}
+
+const parseImages = (images: unknown, fallbackImage: string) => {
+  if (Array.isArray(images)) return images.filter((image): image is string => typeof image === "string" && image.length > 0);
+  if (typeof images === "string") {
+    try {
+      const parsed = JSON.parse(images);
+      if (Array.isArray(parsed)) return parsed.filter((image): image is string => typeof image === "string" && image.length > 0);
+    } catch {
+      return fallbackImage ? [fallbackImage] : [];
+    }
+  }
+  return fallbackImage ? [fallbackImage] : [];
+};
+
+function parseJsonObject(value: unknown): Record<string, string> {
+  if (typeof value !== "string") return typeof value === "object" && value && !Array.isArray(value) ? Object.fromEntries(Object.entries(value).map(([key, item]) => [key, String(item)])) : {};
+
+  try {
+    const parsed = JSON.parse(value);
+    return typeof parsed === "object" && parsed && !Array.isArray(parsed) ? Object.fromEntries(Object.entries(parsed).map(([key, item]) => [key, String(item)])) : {};
+  } catch {
+    return {};
+  }
+}
+
+function parseJsonArray(value: unknown): string[] {
+  if (Array.isArray(value)) return value.filter((item): item is string => typeof item === "string" && item.trim().length > 0);
+  if (typeof value !== "string") return [];
+
+  try {
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed.filter((item): item is string => typeof item === "string" && item.trim().length > 0) : [];
+  } catch {
+    return value.split(/\n|,/).map((item) => item.trim()).filter(Boolean);
+  }
+}
+
+function specificationTextFromValue(value: unknown) {
+  return Object.entries(parseJsonObject(value)).map(([key, item]) => `${key}: ${item}`).join("\n");
+}
+
+function applicationsTextFromValue(value: unknown) {
+  return parseJsonArray(value).join("\n");
+}
+
+function parseSpecificationText(value: string) {
+  const details: Record<string, string> = {};
+  value
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .forEach((line, index) => {
+      const separatorIndex = line.indexOf(":");
+      if (separatorIndex > -1) {
+        const key = line.slice(0, separatorIndex).trim();
+        const item = line.slice(separatorIndex + 1).trim();
+        if (key && item) details[key] = item;
+        return;
+      }
+
+      details[`Detail ${index + 1}`] = line;
+    });
+
+  return details;
+}
+
+function parseApplicationsText(value: string) {
+  return value.split(/\n|,/).map((item) => item.trim()).filter(Boolean);
+}
+
+export default function AdminProductForm({ params }: { params: Promise<{ id: string }> }) {
+  const router = useRouter();
+  const { id } = use(params);
+  const isEdit = id !== "new";
+  const productId = isEdit ? id : null;
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState("");
+  const [saving, setSaving] = useState(false);
+  const [form, setForm] = useState({
+    name: "",
+    slug: "",
+    description: "",
+    pricePerMeter: "",
+    specificationText: "",
+    applicationsText: "",
+    image: "",
+    categoryId: "",
+    isFeatured: false,
+    isNewArrival: false,
+    isActive: true,
+    images: [] as string[],
+  });
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function fetchData() {
+      try {
+        const authRes = await fetch("/api/auth/me");
+        if (authRes.status === 401) {
+          router.replace("/admin/login");
+          return;
+        }
+
+        const categoryResponse = await fetch("/api/categories");
+        const categoryData = (await categoryResponse.json().catch(() => null)) as Category[] | { error?: unknown } | null;
+        if (!categoryResponse.ok) {
+          if (!cancelled) {
+            setLoadError(typeof categoryData && categoryData && "error" in categoryData && typeof categoryData.error === "string" ? categoryData.error : "Unable to load categories.");
+          }
+          return;
+        }
+
+        if (!cancelled) {
+          setCategories(Array.isArray(categoryData) ? categoryData : []);
+        }
+
+        if (isEdit && productId) {
+          const response = await fetch(`/api/products/${productId}`);
+          const product = (await response.json().catch(() => null)) as Record<string, unknown> & { error?: unknown } | null;
+          if (!response.ok) {
+            if (!cancelled) {
+              setLoadError(typeof product?.error === "string" ? product.error : "Unable to load product.");
+            }
+            return;
+          }
+
+          if (!cancelled && product) {
+            setForm({
+              name: String(product.name || ""),
+              slug: String(product.slug || ""),
+              description: String(product.description || ""),
+              pricePerMeter: String(product.pricePerMeter || ""),
+              specificationText: specificationTextFromValue(product.specifications),
+              applicationsText: applicationsTextFromValue(product.applications),
+              image: String(product.image || ""),
+              categoryId: String(product.categoryId || ""),
+              isFeatured: Boolean(product.isFeatured),
+              isNewArrival: Boolean(product.isNewArrival),
+              isActive: Boolean(product.isActive),
+              images: parseImages(product.images, String(product.image || "")),
+            });
+          }
+        }
+
+        if (!cancelled) {
+          setLoadError("");
+        }
+      } catch {
+        if (!cancelled) {
+          setLoadError("Unable to load product form.");
+        }
+      } finally {
+        if (!cancelled) {
+          setLoading(false);
+        }
+      }
+    }
+
+    void fetchData();
+    return () => { cancelled = true; };
+  }, [router, isEdit, productId]);
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    setSaving(true);
+
+    const slug = form.slug || form.name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    const body = {
+      slug,
+      name: form.name.trim(),
+      description: form.description.trim(),
+      pricePerMeter: form.pricePerMeter.trim(),
+      specifications: parseSpecificationText(form.specificationText),
+      applications: parseApplicationsText(form.applicationsText),
+      image: form.image,
+      images: form.images.length > 0 ? form.images : form.image ? [form.image] : [],
+      categoryId: form.categoryId,
+      isFeatured: form.isFeatured,
+      isNewArrival: form.isNewArrival,
+      isActive: form.isActive,
+    };
+
+    const url = isEdit ? `/api/products/${productId}` : "/api/products";
+    const method = isEdit ? "PUT" : "POST";
+
+    try {
+      const response = await fetch(url, { method, headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
+      if (response.ok) router.push("/admin/products");
+      else {
+        const data = await response.json();
+        alert(data.error || "Failed to save product");
+      }
+    } catch {
+      alert("Error saving product");
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <AdminShell
+      title={isEdit ? "Edit Product" : "Add Product"}
+      description="Add product details, images, pricing, and catalogue visibility."
+      action={<button onClick={() => router.push("/admin/products")} className="border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-50">Back to Products</button>}
+    >
+      {loading ? (
+        <div className="h-64 animate-pulse border border-slate-200 bg-white" />
+      ) : loadError ? (
+        <div className="border border-red-200 bg-red-50 px-5 py-6 text-sm font-medium text-red-700">{loadError}</div>
+      ) : (
+      <form onSubmit={handleSubmit} className="max-w-5xl space-y-6">
+        <section className="border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <h2 className="mb-4 text-lg font-semibold text-slate-950">Product Details</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Field label="Product Name *"><input required value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} className="admin-input" /></Field>
+            <Field label="Category *">
+              <select required value={form.categoryId} onChange={(event) => setForm({ ...form, categoryId: event.target.value })} className="admin-input">
+                <option value="">Select category</option>
+                {categories.map((category) => <option key={category.id} value={category.id}>{category.name}</option>)}
+              </select>
+            </Field>
+          </div>
+          <div className="mt-4 grid gap-4 sm:grid-cols-2">
+            <Field label="Price Per Meter"><input value={form.pricePerMeter} onChange={(event) => setForm({ ...form, pricePerMeter: event.target.value })} placeholder="₹ 98/Meter" className="admin-input" /></Field>
+            <div className="flex flex-wrap items-end gap-5 pb-2">
+              <Toggle label="Featured" checked={form.isFeatured} onChange={(checked) => setForm({ ...form, isFeatured: checked })} />
+              <Toggle label="New Arrival" checked={form.isNewArrival} onChange={(checked) => setForm({ ...form, isNewArrival: checked })} />
+              <Toggle label="Active" checked={form.isActive} onChange={(checked) => setForm({ ...form, isActive: checked })} />
+            </div>
+          </div>
+          <Field label="Description *" className="mt-4"><textarea required rows={5} value={form.description} onChange={(event) => setForm({ ...form, description: event.target.value })} className="admin-input resize-none" /></Field>
+        </section>
+
+        <section className="border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <h2 className="mb-4 text-lg font-semibold text-slate-950">Product Images</h2>
+          <div className="grid gap-5 lg:grid-cols-2">
+            <ImageUpload folder="products" currentImage={form.image} onImageSelect={(url) => setForm({ ...form, image: url, images: form.images.length > 0 ? form.images : url ? [url] : [] })} label="Main Image" />
+            <MultiImageUpload folder="products" currentImages={form.images} onImagesSelect={(urls) => setForm({ ...form, images: urls, image: form.image || urls[0] || "" })} label="Gallery Images" />
+          </div>
+        </section>
+
+        <section className="border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
+          <h2 className="mb-4 text-lg font-semibold text-slate-950">More Details</h2>
+          <div className="grid gap-4 lg:grid-cols-2">
+            <Field label="Key Details"><textarea rows={8} value={form.specificationText} onChange={(event) => setForm({ ...form, specificationText: event.target.value })} placeholder={"Material: PPR-C\nSize Range: 20MM to 615 mm\nPressure Rating: PN 6 to PN 20"} className="admin-input resize-none" /></Field>
+            <Field label="Applications"><textarea rows={8} value={form.applicationsText} onChange={(event) => setForm({ ...form, applicationsText: event.target.value })} placeholder={"Water Supply\nChemical Plants\nCooling Towers"} className="admin-input resize-none" /></Field>
+          </div>
+        </section>
+
+        <div className="flex flex-col gap-2 sm:flex-row">
+          <button type="submit" disabled={saving} className="bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark disabled:opacity-60">
+            {saving ? "Saving..." : isEdit ? "Update Product" : "Create Product"}
+          </button>
+          <button type="button" onClick={() => router.push("/admin/products")} className="border border-slate-200 px-6 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-50">Cancel</button>
+        </div>
+      </form>
+      )}
+    </AdminShell>
+  );
+}
+
+function Field({ label, children, className = "" }: { label: string; children: React.ReactNode; className?: string }) {
+  return <label className={`block ${className}`}><span className="mb-1 block text-sm font-medium text-slate-700">{label}</span>{children}</label>;
+}
+
+function Toggle({ label, checked, onChange }: { label: string; checked: boolean; onChange: (checked: boolean) => void }) {
+  return (
+    <label className="flex items-center gap-2 text-sm font-medium text-slate-700">
+      <input type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} className="h-4 w-4 border-slate-300 text-primary" />
+      {label}
+    </label>
+  );
+}
