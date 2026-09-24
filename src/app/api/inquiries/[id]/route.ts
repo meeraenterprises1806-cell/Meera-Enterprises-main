@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/db";
-import { getSession } from "@/lib/auth";
 import { DATABASE_UNAVAILABLE_MESSAGE, isDatabaseUnavailableError, jsonError, logServerError } from "@/lib/api";
+import { getSession } from "@/lib/auth";
+import { prisma } from "@/lib/db";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await getSession();
@@ -11,7 +11,15 @@ export async function PUT(req: NextRequest, { params }: { params: Promise<{ id: 
   const data = await req.json();
 
   try {
-    const inquiry = await prisma.inquiry.update({ where: { id }, data: { isRead: data.isRead } });
+    const updateData: { isRead?: boolean; distributorId?: string | null; assignedAt?: Date | null; status?: string } = {};
+    if (typeof data.isRead === "boolean") updateData.isRead = data.isRead;
+    if (data.distributorId !== undefined) {
+      updateData.distributorId = data.distributorId || null;
+      updateData.assignedAt = data.distributorId ? new Date() : null;
+      if (data.distributorId) updateData.status = "new";
+    }
+    if (typeof data.status === "string" && ["new", "follow-up", "accepted", "converted", "rejected"].includes(data.status)) updateData.status = data.status;
+    const inquiry = await prisma.inquiry.update({ where: { id }, data: updateData });
     return NextResponse.json(inquiry);
   } catch (error) {
     logServerError("api.inquiries.id.PUT", error);

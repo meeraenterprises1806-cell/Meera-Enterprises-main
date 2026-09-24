@@ -1,7 +1,7 @@
-import { prisma } from "@/lib/db";
-import { hashPassword } from "@/lib/auth";
-import { NextResponse } from "next/server";
 import { jsonError, logServerError } from "@/lib/api";
+import { hashPassword } from "@/lib/auth";
+import { prisma } from "@/lib/db";
+import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -31,6 +31,20 @@ export async function POST(request: Request) {
         name: "Admin",
       },
     });
+
+    if (process.env.DISTRIBUTOR_EMAIL && process.env.DISTRIBUTOR_PASSWORD) {
+      await prisma.distributor.upsert({
+        where: { email: process.env.DISTRIBUTOR_EMAIL },
+        update: { isActive: true },
+        create: {
+          email: process.env.DISTRIBUTOR_EMAIL,
+          password: await hashPassword(process.env.DISTRIBUTOR_PASSWORD),
+          name: process.env.DISTRIBUTOR_NAME || "Authorized Distributor",
+          company: process.env.DISTRIBUTOR_COMPANY || "",
+          phone: process.env.DISTRIBUTOR_PHONE || "",
+        },
+      });
+    }
 
     // Seed categories
     const categoryData = [

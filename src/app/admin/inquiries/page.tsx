@@ -1,10 +1,10 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { CheckCircle2, Mail, Phone, Trash2, X } from "lucide-react";
 import AdminShell from "@/components/admin/AdminShell";
 import Pagination from "@/components/admin/Pagination";
+import { CheckCircle2, Mail, Phone, Send, Trash2, X } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface Inquiry {
   id: string;
@@ -18,7 +18,15 @@ interface Inquiry {
   product?: { name: string } | null;
   source: string;
   isRead: boolean;
+  status: string;
+  distributor?: { id: string; name: string; company: string } | null;
   createdAt: string;
+}
+
+interface Distributor {
+  id: string;
+  name: string;
+  company: string;
 }
 
 interface PaginationState {
@@ -36,6 +44,9 @@ export default function AdminInquiriesPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [selected, setSelected] = useState<Inquiry | null>(null);
+  const [transferDistributorId, setTransferDistributorId] = useState("");
+  const [transferring, setTransferring] = useState(false);
+  const [distributors, setDistributors] = useState<Distributor[]>([]);
   const [page, setPage] = useState(1);
   const [refreshKey, setRefreshKey] = useState(0);
   const [pagination, setPagination] = useState<PaginationState>({ page: 1, pageSize, total: 0, totalPages: 1 });
@@ -84,6 +95,13 @@ export default function AdminInquiriesPage() {
     };
   }, [page, refreshKey, router]);
 
+  useEffect(() => {
+    fetch("/api/admin/distributors")
+      .then((response) => (response.ok ? response.json() : []))
+      .then((data: Distributor[]) => setDistributors(Array.isArray(data) ? data : []))
+      .catch(() => setDistributors([]));
+  }, []);
+
   const markRead = async (inquiryId: string) => {
     const response = await fetch(`/api/inquiries/${inquiryId}`, { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ isRead: true }) });
     if (response.ok) {
@@ -112,6 +130,26 @@ export default function AdminInquiriesPage() {
     else setRefreshKey((current) => current + 1);
   };
 
+  const transferInquiry = async () => {
+    if (!selected || !transferDistributorId) return;
+    setTransferring(true);
+    const response = await fetch(`/api/inquiries/${selected.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ distributorId: transferDistributorId }),
+    });
+    setTransferring(false);
+    if (!response.ok) {
+      const data = (await response.json().catch(() => null)) as { error?: unknown } | null;
+      setError(typeof data?.error === "string" ? data.error : "Unable to transfer this inquiry.");
+      return;
+    }
+    const distributor = distributors.find((item) => item.id === transferDistributorId) || null;
+    setInquiries((current) => current.map((inquiry) => inquiry.id === selected.id ? { ...inquiry, distributor, status: "new" } : inquiry));
+    setSelected({ ...selected, distributor, status: "new" });
+    setError("");
+  };
+
   const handlePageChange = (nextPage: number) => {
     setLoading(true);
     setPage(nextPage);
@@ -119,6 +157,7 @@ export default function AdminInquiriesPage() {
 
   const openInquiry = (inquiry: Inquiry) => {
     setSelected(inquiry);
+    setTransferDistributorId(inquiry.distributor?.id || "");
     if (!inquiry.isRead) void markRead(inquiry.id);
   };
 
@@ -144,6 +183,26 @@ export default function AdminInquiriesPage() {
                 <Detail label="Source" value={selected.source} />
               </div>
               {selected.quantity && <Detail label="Quantity" value={selected.quantity} />}
+              <div>
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-400">Assigned Distributor</p>
+                <select
+                  value={transferDistributorId}
+                  onChange={(event) => setTransferDistributorId(event.target.value)}
+                  className="w-full border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none focus:border-primary"
+                >
+                  <option value="">Select distributor</option>
+                  {distributors.map((distributor) => <option key={distributor.id} value={distributor.id}>{distributor.name}{distributor.company ? ` - ${distributor.company}` : ""}</option>)}
+                </select>
+                {distributors.length === 0 && <p className="mt-2 text-xs text-amber-600">Create an active distributor account before assigning inquiries.</p>}
+                <button
+                  type="button"
+                  onClick={() => { void transferInquiry(); }}
+                  disabled={!transferDistributorId || transferring}
+                  className="mt-3 inline-flex items-center justify-center gap-2 bg-primary px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-primary-dark disabled:cursor-not-allowed disabled:opacity-50"
+                >
+                  <Send size={15} /> {transferring ? "Transferring..." : "Transfer Inquiry"}
+                </button>
+              </div>
               <div>
                 <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-400">Message</p>
                 <p className="border border-slate-100 bg-slate-50 p-4 leading-relaxed text-slate-700">{selected.message || "-"}</p>

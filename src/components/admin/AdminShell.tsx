@@ -1,7 +1,7 @@
 "use client";
 
 import { companyInfo } from "@/data/company";
-import { BarChart3, BookOpenText, Building2, FolderTree, ImageIcon, Inbox, LogOut, Menu, Package, UserCircle, X } from "lucide-react";
+import { BarChart3, BookOpenText, Building2, FolderTree, ImageIcon, Inbox, LogOut, Menu, Package, UserCircle, Users, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -15,6 +15,7 @@ const navItems = [
   { label: "Infrastructure Gallery", href: "/admin/infrastructure-gallery", icon: Building2 },
   { label: "Blog Posts", href: "/admin/blogs", icon: BookOpenText },
   { label: "Inquiries", href: "/admin/inquiries", icon: Inbox },
+  { label: "Distributors", href: "/admin/distributors", icon: Users },
   { label: "My Profile", href: "/admin/profile", icon: UserCircle },
 ];
 

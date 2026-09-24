@@ -15,6 +15,40 @@ model AdminUser {
   createdAt DateTime @default(now())
 }
 
+model Distributor {
+  id          String    @id @default(cuid())
+  email       String    @unique
+  password    String
+  name        String
+  company     String    @default("")
+  phone       String    @default("")
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  inquiries   Inquiry[]
+  orders      Order[]
+}
+
+model DistributorApplication {
+  id               String   @id @default(cuid())
+  businessName     String
+  ownerName        String
+  mobile           String
+  email            String
+  gstNumber        String
+  panNumber        String
+  state            String
+  city             String
+  address          String
+  businessType     String
+  yearsInBusiness  String
+  brandFocus       String
+  documentsName    String   @default("")
+  status           String   @default("pending")
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
 model ProductCategory {
   id           String    @id @default(cuid())
   slug         String    @unique
@@ -94,5 +128,21 @@ model Inquiry {
   productName String   @default("")
   source      String   @default("website")
   isRead      Boolean  @default(false)
+  status      String   @default("new")
+  distributorId String?
+  distributor Distributor? @relation(fields: [distributorId], references: [id], onDelete: SetNull)
+  assignedAt  DateTime?
   createdAt   DateTime @default(now())
+  order       Order?
+}
+
+model Order {
+  id            String      @id @default(cuid())
+  inquiryId     String      @unique
+  inquiry       Inquiry     @relation(fields: [inquiryId], references: [id], onDelete: Cascade)
+  distributorId String
+  distributor   Distributor @relation(fields: [distributorId], references: [id], onDelete: Cascade)
+  status        String      @default("pending")
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }

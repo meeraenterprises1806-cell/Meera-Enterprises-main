@@ -22,6 +22,10 @@ export function signToken(payload: { id: string; email: string }): string {
   return jwt.sign(payload, getJwtSecret(), { expiresIn: "7d" });
 }
 
+export function signDistributorToken(payload: { id: string; email: string }): string {
+  return jwt.sign(payload, getJwtSecret(), { expiresIn: "7d" });
+}
+
 export function verifyToken(token: string): { id: string; email: string } | null {
   try {
     return jwt.verify(token, getJwtSecret()) as { id: string; email: string };
@@ -39,6 +43,19 @@ export async function getSession(): Promise<{ id: string; email: string } | null
 
 export async function requireAuth(): Promise<{ id: string; email: string }> {
   const session = await getSession();
+  if (!session) throw new Error("Unauthorized");
+  return session;
+}
+
+export async function getDistributorSession(): Promise<{ id: string; email: string } | null> {
+  const cookieStore = await cookies();
+  const token = cookieStore.get("distributor_token")?.value;
+  if (!token) return null;
+  return verifyToken(token);
+}
+
+export async function requireDistributorAuth(): Promise<{ id: string; email: string }> {
+  const session = await getDistributorSession();
   if (!session) throw new Error("Unauthorized");
   return session;
 }

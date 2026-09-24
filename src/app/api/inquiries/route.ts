@@ -1,9 +1,9 @@
-import { NextRequest, NextResponse } from "next/server";
-import { prisma } from "@/lib/db";
+import { DATABASE_UNAVAILABLE_MESSAGE, isDatabaseUnavailableError, jsonError, logServerError } from "@/lib/api";
 import { getSession } from "@/lib/auth";
+import { prisma } from "@/lib/db";
 import { sendInquiryEmails } from "@/lib/email";
 import { checkRateLimit, getClientIdentifier } from "@/lib/rateLimit";
-import { DATABASE_UNAVAILABLE_MESSAGE, isDatabaseUnavailableError, jsonError, logServerError } from "@/lib/api";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
   const session = await getSession();
@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
       const [items, total] = await prisma.$transaction([
         prisma.inquiry.findMany({
           where,
-          include: { product: { select: { name: true, slug: true } } },
+          include: { product: { select: { name: true, slug: true } }, distributor: { select: { id: true, name: true, company: true } } },
           orderBy: { createdAt: "desc" },
           skip: (page - 1) * pageSize,
           take: pageSize,
@@ -39,7 +39,7 @@ export async function GET(req: NextRequest) {
 
     const inquiries = await prisma.inquiry.findMany({
       where,
-      include: { product: { select: { name: true, slug: true } } },
+      include: { product: { select: { name: true, slug: true } }, distributor: { select: { id: true, name: true, company: true } } },
       orderBy: { createdAt: "desc" },
     });
     return NextResponse.json(inquiries);

@@ -1,4 +1,3 @@
-import PopupModal from "@/components/PopupModal";
 import SiteFrame from "@/components/SiteFrame";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -139,7 +138,6 @@ export default function RootLayout({
           <p style={{ fontSize: "1.5rem" }}>📞 7239066492</p>
         </div> */}
         <SiteFrame>
-          <PopupModal />
           {children}
         </SiteFrame>
       </body>
