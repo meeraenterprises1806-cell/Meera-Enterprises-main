@@ -236,7 +236,7 @@ export default function AdminProductForm({ params }: { params: Promise<{ id: str
             </Field>
           </div>
           <div className="mt-4 grid gap-4 sm:grid-cols-2">
-            <Field label="Price Per Meter"><input value={form.pricePerMeter} onChange={(event) => setForm({ ...form, pricePerMeter: event.target.value })} placeholder="₹ 98/Meter" className="admin-input" /></Field>
+            <Field label="Price Per Meter"><input value={form.pricePerMeter} onChange={(event) => setForm({ ...form, pricePerMeter: event.target.value })} placeholder="₹ 1800" className="admin-input" /></Field>
             <div className="flex flex-wrap items-end gap-5 pb-2">
               <Toggle label="Featured" checked={form.isFeatured} onChange={(checked) => setForm({ ...form, isFeatured: checked })} />
               <Toggle label="New Arrival" checked={form.isNewArrival} onChange={(checked) => setForm({ ...form, isNewArrival: checked })} />
@@ -257,8 +257,8 @@ export default function AdminProductForm({ params }: { params: Promise<{ id: str
         <section className="border border-slate-200 bg-white p-5 shadow-sm sm:p-6">
           <h2 className="mb-4 text-lg font-semibold text-slate-950">More Details</h2>
           <div className="grid gap-4 lg:grid-cols-2">
-            <Field label="Key Details"><textarea rows={8} value={form.specificationText} onChange={(event) => setForm({ ...form, specificationText: event.target.value })} placeholder={"Material: PPR-C\nSize Range: 20MM to 615 mm\nPressure Rating: PN 6 to PN 20"} className="admin-input resize-none" /></Field>
-            <Field label="Applications"><textarea rows={8} value={form.applicationsText} onChange={(event) => setForm({ ...form, applicationsText: event.target.value })} placeholder={"Water Supply\nChemical Plants\nCooling Towers"} className="admin-input resize-none" /></Field>
+            <Field label="Key Details"><textarea rows={8} value={form.specificationText} onChange={(event) => setForm({ ...form, specificationText: event.target.value })} placeholder={"Colour: Black/Red \nDesign: stylish\nMaintenance: Easy to clean and maintain"} className="admin-input resize-none" /></Field>
+            <Field label="Applications"><textarea rows={8} value={form.applicationsText} onChange={(event) => setForm({ ...form, applicationsText: event.target.value })} placeholder={"Retail & Showrooms\nConference & Meeting Rooms\nOffice & Corporate Spaces"} className="admin-input resize-none" /></Field>
           </div>
         </section>
 

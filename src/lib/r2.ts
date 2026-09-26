@@ -1,5 +1,5 @@
-import { S3Client, PutObjectCommand, DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { logServerError } from "@/lib/api";
+import { DeleteObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
 const R2 = new S3Client({
   region: "auto",
@@ -26,13 +26,20 @@ export function isR2Configured(): boolean {
  * @param folder Subfolder like "products", "categories", "blogs"
  * @returns Public URL of the uploaded image
  */
-export async function uploadToR2(file: File, folder: string): Promise<string> {
-  if (!ALLOWED_TYPES.includes(file.type)) {
-    throw new Error("Only JPEG, PNG, WebP, and GIF images are allowed");
+export async function uploadToR2(
+  file: File,
+  folder: string,
+  options?: { allowedTypes?: string[]; maxSize?: number },
+): Promise<string> {
+  const allowedTypes = options?.allowedTypes ?? ALLOWED_TYPES;
+  const maxSize = options?.maxSize ?? MAX_SIZE;
+
+  if (!allowedTypes.includes(file.type)) {
+    throw new Error("File type is not allowed");
   }
 
-  if (file.size > MAX_SIZE) {
-    throw new Error("File must be under 5MB");
+  if (file.size > maxSize) {
+    throw new Error(`File must be under ${Math.floor(maxSize / (1024 * 1024))}MB`);
   }
 
   const bytes = await file.arrayBuffer();

@@ -3,7 +3,7 @@ import { PrismaPg } from "@prisma/adapter-pg";
 
 const globalForPrisma = globalThis as unknown as { prisma?: PrismaClient; prismaSchemaVersion?: string };
 
-const prismaSchemaVersion = "distributor-applications-v1";
+const prismaSchemaVersion = "certifications-v1";
 
 function createPrismaClient() {
 	const connectionString = process.env.DATABASE_URL;

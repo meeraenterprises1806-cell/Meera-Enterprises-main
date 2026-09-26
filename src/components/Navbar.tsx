@@ -18,7 +18,7 @@ const navLinks = [
   { label: "About Us", href: "/about" },
   { label: "Products", href: "/products" },
   { label: "Catalogue", href: "/catalogue" },
-  // { label: "Infrastructure", href: "/infrastructure" },
+  { label: "Certificates", href: "/infrastructure" },
   { label: "Brands We Deal In", href: "/clients" },
   { label: "Distributor", href: "/distributor" },
   { label: "Blogs", href: "/blogs" },

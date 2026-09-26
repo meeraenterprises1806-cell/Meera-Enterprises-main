@@ -1,11 +1,11 @@
 "use client";
 
+import { Upload, X } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
-import { Upload, X } from "lucide-react";
 
 interface ImageUploadProps {
-  folder: "products" | "categories" | "blogs" | "projects" | "infrastructure";
+  folder: "products" | "categories" | "blogs" | "projects" | "infrastructure" | "certifications";
   onImageSelect: (url: string) => void;
   currentImage?: string;
   label?: string;

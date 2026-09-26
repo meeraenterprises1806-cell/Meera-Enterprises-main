@@ -1,29 +1,30 @@
 import EnquiryButton from "@/components/EnquiryButton";
 import InquiryForm from "@/components/InquiryForm";
 import RatingSummary from "@/components/RatingSummary";
+import TrendingCarousel from "@/components/TrendingCarousel";
 import { companyInfo } from "@/data/company";
 import { getRecentPublishedBlogs, parseBlogImages } from "@/lib/publicBlogs";
 import { getPublicProjectImages } from "@/lib/publicGalleries";
 import {
-    getPublicCategories,
-    getPublicFeaturedProducts,
-    getPublicNewArrivals,
+  getPublicCategories,
+  getPublicFeaturedProducts,
+  getPublicNewArrivals,
 } from "@/lib/publicProducts";
 import {
-    ArrowRight,
-    Award,
-    Calendar,
-    CheckCircle,
-    ChevronRight,
-    Clock,
-    Factory,
-    Phone,
-    Shield,
-    Star,
-    Tag,
-    Truck,
-    Users,
-    Wrench,
+  ArrowRight,
+  Award,
+  Calendar,
+  CheckCircle,
+  ChevronRight,
+  Clock,
+  Factory,
+  Phone,
+  Shield,
+  Star,
+  Tag,
+  Truck,
+  Users,
+  Wrench,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -181,6 +182,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <TrendingCarousel images={projectImages} />
 
       {/* ==================== ABOUT SECTION ==================== */}
       <section className="bg-white py-14 sm:py-20" id="about">
@@ -383,8 +386,7 @@ export default async function HomePage() {
               Featured Products
             </h2>
             <p className="text-gray-600 max-w-xl mx-auto">
-              Our most popular PPR-C piping products trusted by industries
-              across India.
+              Explore quality furniture, appliances, fans, lighting and more from trusted brands for your home and workplace.
             </p>
           </div>
 
@@ -734,7 +736,7 @@ export default async function HomePage() {
             <div className="inline-flex items-center justify-center gap-3 mb-4">
               <div className="w-10 h-0.5 bg-primary" />
               <span className="text-primary font-bold text-sm uppercase tracking-[0.2em]">
-                IndiaMART Verified
+                GeM Portal Verified
               </span>
             </div>
             <h2 className="text-4xl font-extrabold text-gray-900 mb-4">

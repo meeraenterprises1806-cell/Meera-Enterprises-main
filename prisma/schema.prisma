@@ -115,6 +115,15 @@ model InfrastructureImage {
   updatedAt DateTime @updatedAt
 }
 
+model Certification {
+  id        String   @id @default(cuid())
+  title     String
+  fileUrl   String
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 model Inquiry {
   id          String   @id @default(cuid())
   name        String

@@ -87,8 +87,8 @@ export default function Footer() {
                 { label: "About Us", href: "/about" },
                 { label: "Products", href: "/products" },
                 { label: "Catalogue", href: "/catalogue" },
-                { label: "Infrastructure", href: "/infrastructure" },
-                { label: "Clients", href: "/clients" },
+                { label: "Certificates", href: "/infrastructure" },
+                { label: "Brands We Deal In", href: "/clients" },
                 { label: "Blogs", href: "/blogs" },
                 { label: "Contact", href: "/contact" },
               ].map((link) => (
@@ -171,12 +171,12 @@ export default function Footer() {
                 Send Inquiry
               </Link>
               <a
-                href={companyInfo.social.indiamart}
+                href="https://gem.gov.in/landing/gem_seller_id/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-1 border border-white/10 px-4 py-2 rounded text-xs font-semibold text-white hover:bg-white/5 transition-colors"
               >
-                IndiaMART <ExternalLink size={12} />
+                GeM Portal <ExternalLink size={12} />
               </a>
             </div>
           </div>

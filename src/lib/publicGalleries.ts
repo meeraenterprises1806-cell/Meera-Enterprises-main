@@ -61,3 +61,10 @@ export async function getPublicInfrastructureImages() {
     fallbackInfrastructureImages,
   );
 }
+
+export async function getPublicCertifications() {
+  return queryPublicGallery(
+    (client) => client.certification.findMany({ orderBy: galleryOrder }),
+    [],
+  );
+}

@@ -1,19 +1,21 @@
 "use client";
 
+import AdminShell from "@/components/admin/AdminShell";
+import CertificateUpload from "@/components/CertificateUpload";
+import ImageUpload from "@/components/ImageUpload";
+import { Edit3, ExternalLink, FileText, Plus, Trash2, X } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Edit3, Plus, Trash2, X } from "lucide-react";
-import AdminShell from "@/components/admin/AdminShell";
-import ImageUpload from "@/components/ImageUpload";
 
-type GalleryEndpoint = "project-images" | "infrastructure-images";
-type GalleryFolder = "projects" | "infrastructure";
+type GalleryEndpoint = "project-images" | "infrastructure-images" | "certifications";
+type GalleryFolder = "projects" | "infrastructure" | "certifications";
 
 interface GalleryItem {
   id: string;
   title: string;
-  image: string;
+  image?: string;
+  fileUrl?: string;
   sortOrder: number;
 }
 
@@ -24,11 +26,12 @@ interface GalleryManagerProps {
   description: string;
   formTitle: string;
   emptyMessage: string;
+  certificateMode?: boolean;
 }
 
 const emptyForm = { title: "", image: "", sortOrder: 0 };
 
-export default function GalleryManager({ endpoint, uploadFolder, title, description, formTitle, emptyMessage }: GalleryManagerProps) {
+export default function GalleryManager({ endpoint, uploadFolder, title, description, formTitle, emptyMessage, certificateMode = false }: GalleryManagerProps) {
   const router = useRouter();
   const [items, setItems] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -83,7 +86,7 @@ export default function GalleryManager({ endpoint, uploadFolder, title, descript
 
   const handleEdit = (item: GalleryItem) => {
     setEditId(item.id);
-    setForm({ title: item.title, image: item.image, sortOrder: item.sortOrder });
+    setForm({ title: item.title, image: certificateMode ? item.fileUrl ?? "" : item.image ?? "", sortOrder: item.sortOrder });
     setShowForm(true);
   };
 
@@ -94,7 +97,9 @@ export default function GalleryManager({ endpoint, uploadFolder, title, descript
     const response = await fetch(url, {
       method,
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title: form.title.trim(), image: form.image, sortOrder: form.sortOrder }),
+      body: JSON.stringify(certificateMode
+        ? { title: form.title.trim(), fileUrl: form.image, sortOrder: form.sortOrder }
+        : { title: form.title.trim(), image: form.image, sortOrder: form.sortOrder }),
     });
 
     if (response.ok) {
@@ -120,7 +125,7 @@ export default function GalleryManager({ endpoint, uploadFolder, title, descript
       description={description}
       action={
         <button onClick={() => { setShowForm(true); setEditId(null); setForm(emptyForm); }} className="inline-flex w-full items-center justify-center gap-2 bg-primary px-4 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark sm:w-auto">
-          <Plus size={16} /> Add Image
+          <Plus size={16} /> Add {certificateMode ? "Certificate" : "Image"}
         </button>
       }
     >
@@ -144,9 +149,13 @@ export default function GalleryManager({ endpoint, uploadFolder, title, descript
                 <input type="number" value={form.sortOrder} onChange={(event) => setForm({ ...form, sortOrder: Number.parseInt(event.target.value, 10) || 0 })} className="admin-input" />
               </label>
             </div>
-            <ImageUpload folder={uploadFolder} currentImage={form.image} onImageSelect={(url) => setForm({ ...form, image: url })} label="Image *" />
+            {certificateMode ? (
+              <CertificateUpload currentFile={form.image} onFileSelect={(url) => setForm({ ...form, image: url })} />
+            ) : (
+              <ImageUpload folder={uploadFolder} currentImage={form.image} onImageSelect={(url) => setForm({ ...form, image: url })} label="Image *" />
+            )}
             <div className="flex flex-col gap-2 pt-2 sm:flex-row">
-              <button type="submit" className="bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark">{editId ? "Update Image" : "Create Image"}</button>
+              <button type="submit" className="bg-primary px-5 py-2.5 text-sm font-semibold text-white hover:bg-primary-dark">{editId ? `Update ${formTitle}` : `Create ${formTitle}`}</button>
               <button type="button" onClick={resetForm} className="border border-slate-200 px-5 py-2.5 text-sm font-semibold text-slate-600 hover:bg-slate-50">Cancel</button>
             </div>
           </form>
@@ -166,7 +175,19 @@ export default function GalleryManager({ endpoint, uploadFolder, title, descript
           {items.map((item) => (
             <article key={item.id} className="border border-slate-200 bg-white p-4 shadow-sm">
               <div className="relative mb-4 h-44 overflow-hidden bg-slate-100">
-                {item.image && <Image src={item.image} alt={item.title} fill sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw" unoptimized className="object-cover" />}
+                {certificateMode ? (
+                  item.fileUrl && ["jpg", "jpeg", "png", "webp", "gif"].includes(item.fileUrl.split(/[?#]/)[0].split(".").pop()?.toLowerCase() ?? "") ? (
+                    <Image src={item.fileUrl} alt={item.title} fill sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw" unoptimized className="object-contain" />
+                  ) : (
+                    <a href={item.fileUrl} target="_blank" rel="noreferrer" className="flex h-full flex-col items-center justify-center gap-2 text-slate-600 hover:text-primary">
+                      <FileText size={34} />
+                      <span className="text-xs font-semibold uppercase">{item.fileUrl?.split(/[?#]/)[0].split(".").pop() || "File"}</span>
+                      <span className="inline-flex items-center gap-1 text-xs font-medium">Preview file <ExternalLink size={13} /></span>
+                    </a>
+                  )
+                ) : (
+                  item.image && <Image src={item.image} alt={item.title} fill sizes="(min-width: 1280px) 33vw, (min-width: 640px) 50vw, 100vw" unoptimized className="object-cover" />
+                )}
               </div>
               <div className="mb-4 flex items-start justify-between gap-4">
                 <h2 className="font-semibold text-slate-950">{item.title}</h2>

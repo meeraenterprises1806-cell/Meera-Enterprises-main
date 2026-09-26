@@ -2,12 +2,12 @@ export const companyInfo = {
   name: "Meera Enterprises",
   fullName: "Meera Enterprises",
   tagline: "Powering Home & Office Solutions with Quality and Innovation",
-  established: 2021,
-  ceo: "R Singh",
+  established: 2026,
+  ceo: "Rajendra Singh Kushwaha",
   employees: "11 to 25",
-  experience: "5+",
-  clients: "300+",
-  projects: "1000+",
+  experience: "1+",
+  clients: "120+",
+  projects: "110+",
   rating: 4.0,
   totalReviews: 12,
   
@@ -17,7 +17,7 @@ export const companyInfo = {
     phone2: "+91 72660 48871",
     phoneHref: "+919030048871",
     whatsapp: "919030048871",
-    website: "www.radiatech.in",
+    website: "",
   },
   
   addresses: [
@@ -37,25 +37,28 @@ export const companyInfo = {
   },
   
   about: {
-    short: "Meera Enterprises is a leading trader and supplier of PPR-C pipes and fittings, established in 2021. We specialize in industrial piping solutions for process industries across India.",
-    mission: "To deliver high-quality industrial piping solutions that enhance sustainability, safety, and performance in every application we serve.",
-    vision: "To become India's most trusted nationwide supplier of PPR-C piping systems and industrial piping solutions.",
-    description: "The driving force behind Radiatech Pipe and Fittings' success is the unwavering pursuit of perfection. As one of the most reputable suppliers of PPR-C pipes and fittings, Radiatech is committed to enhancing sustainability within the pipe and fittings industry, an essential factor for ensuring both quality and safety.\n\nWith over five years of industry experience, Radiatech offers a comprehensive range of PPR-C pipes in sizes from 20MM to 615 MM and pressure ratings from PN 6 to PN 20. All fittings fully comply with DIN 16962 standards, ensuring durability and reliability.\n\nRadiatech's PPR-C pipes and fittings are an excellent alternative to conventional piping systems and are ideal for applications including hot and cold water distribution, compressed air systems, chemical supply lines, and clean water networks.",
+    short: "Meera Enterprises offers quality furniture, home appliances, fans, lighting, and more from trusted brands at the best prices, with reliable service.",
+    mission: "Our Mission is to make every home and workplace feel better, brighter, and more comfortable by bringing quality products, trusted brands, honest value, and heartfelt service to every customer we serve.",
+    vision: "Our Vision is to become a trusted name in every home and workplace by making quality, comfort, and style accessible to everyone—while building lasting relationships through trust, value, and exceptional service.",
+    description: "Meera Enterprises is a trusted destination for quality furniture, chairs, tables, home appliances, fans, lighting, and more. We offer genuine products from trusted brands at competitive prices, backed by reliable service and customer-focused solutions.",
   },
   
   specializations: [
-    "Industrial PPR-C Piping Systems",
-    "Pipeline Installation & Lining",
-    "Process Equipment Solutions",
-    "Compressed Air Piping",
-    "Chemical Line Installation",
-    "Cooling Tower Piping",
+  "Furniture & Office Furniture",
+  "Chairs & Seating Solutions",
+  "Tables & Workstations",
+  "Home Appliances",
+  "Fans & Ventilation",
+  "Lighting Solutions",
+  "Trusted-Brand Products",
+  "Bulk & Commercial Supply",
+  "Customized Product Solutions",
+  "Reliable Delivery & Customer Support"
   ],
   
   certifications: [
-    "DIN 16962 Compliant",
     "ISO Quality Standards",
-    "IndiaMART TrustSEAL Verified",
+    "Gem Portal TrustSEAL Verified",
     "MSME Certificate",
     "GST Registered",
   ],
@@ -84,9 +87,9 @@ export const companyInfo = {
   ],
   
   statsItems: [
-    { value: "5+", label: "Years Experience" },
-    { value: "200+", label: "Happy Clients" },
-    { value: "250+", label: "Projects Completed" },
+    { value: "1+", label: "Years Experience" },
+    { value: "120+", label: "Happy Clients" },
+    { value: "110+", label: "Projects Completed" },
     { value: "50+", label: "Years Product Life" },
   ],
 };

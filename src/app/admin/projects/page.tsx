@@ -5,10 +5,10 @@ export default function AdminProjectsPage() {
     <GalleryManager
       endpoint="project-images"
       uploadFolder="projects"
-      title="Our Projects"
-      description="Manage the project images shown on the homepage. The first six images by order appear before View All."
-      formTitle="Project Image"
-      emptyMessage="No project images yet."
+      title="Trending"
+      description="Manage images shown in the homepage Trending carousel. Lower order numbers appear first."
+      formTitle="Trending Image"
+      emptyMessage="No trending images yet."
     />
   );
 }
