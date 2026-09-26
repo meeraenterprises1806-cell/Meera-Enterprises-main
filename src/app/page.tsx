@@ -5,25 +5,25 @@ import { companyInfo } from "@/data/company";
 import { getRecentPublishedBlogs, parseBlogImages } from "@/lib/publicBlogs";
 import { getPublicProjectImages } from "@/lib/publicGalleries";
 import {
-  getPublicCategories,
-  getPublicFeaturedProducts,
-  getPublicNewArrivals,
+    getPublicCategories,
+    getPublicFeaturedProducts,
+    getPublicNewArrivals,
 } from "@/lib/publicProducts";
 import {
-  ArrowRight,
-  Award,
-  Calendar,
-  CheckCircle,
-  ChevronRight,
-  Clock,
-  Factory,
-  Phone,
-  Shield,
-  Star,
-  Tag,
-  Truck,
-  Users,
-  Wrench,
+    ArrowRight,
+    Award,
+    Calendar,
+    CheckCircle,
+    ChevronRight,
+    Clock,
+    Factory,
+    Phone,
+    Shield,
+    Star,
+    Tag,
+    Truck,
+    Users,
+    Wrench,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -78,21 +78,21 @@ export default async function HomePage() {
             <div className="text-white pt-2 sm:pt-4">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 text-sm mb-6 text-white font-medium">
                 <Award size={16} className="text-accent" />
-                <span>Quality Products for Every Space</span>
+                <span>Furniture &amp; Home Appliances in Hyderabad</span>
               </div>
               <h1 className="max-w-xl text-3xl font-extrabold leading-[1.08] tracking-tight sm:text-4xl lg:text-5xl xl:text-5xl">
-                <span className="block lg:whitespace-nowrap">Your Trusted Partner</span>
-                <span className="block lg:whitespace-nowrap">for <span className="text-accent">Home &amp; Workplace</span></span>
-                <span className="block text-accent lg:whitespace-nowrap">Essentials</span>
+                <span className="block lg:whitespace-nowrap">Your Trusted Furniture</span>
+                <span className="block lg:whitespace-nowrap"><span className="text-accent">Supplier &amp; Dealer</span></span>
+                <span className="block text-accent lg:whitespace-nowrap">in Hyderabad</span>
               </h1>
               <ul className="space-y-3 mb-8">
                 {[
                   "Genuine Products from Trusted Brands",
-                  "Furniture & Office Solutions",
-                  "Home Appliances, Fans & Lighting",
+                  "Home Furniture & Office Furniture",
+                  "Home Appliances, Electric Fans & Lighting",
                   "Competitive Prices & Reliable Service",
                   "Residential & Commercial Supply",
-                  "Serving Customers Across Hyderabad & Beyond",
+                  "Serving Hyderabad, Secunderabad & Tirumalagiri",
                 ].map((item) => (
                   <li
                     key={item}
@@ -211,7 +211,7 @@ export default async function HomePage() {
           </div>
 
           <div className="relative h-72 overflow-hidden sm:h-88">
-            <Image src="/images/Home page about us  section.jpg" alt="About Meera Enterprises" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+            <Image src="/images%20(14).png" alt="Meera Enterprises chair and furniture" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
             <div className="absolute bottom-0 right-0 bg-white/95 px-6 py-4 text-right shadow-lg">
               <span className="block text-2xl font-extrabold text-accent">Better Homes</span>
               <span className="text-sm font-bold text-primary">Happier You</span>
@@ -234,8 +234,8 @@ export default async function HomePage() {
               Our Product Range
             </h2>
             <p className="text-gray-600 max-w-xl mx-auto">
-              Comprehensive range of PPR-C pipes, fittings, and industrial
-              solutions meeting international standards.
+              Chairs, tables, home furniture, office furniture, home appliances,
+              electric fans and lighting products for every space.
             </p>
           </div>
 
@@ -256,7 +256,7 @@ export default async function HomePage() {
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6">
                     <h3 className="text-white text-xl font-bold">{cat.name}</h3>
                     <span className="text-white/80 text-sm font-medium">
@@ -501,7 +501,7 @@ export default async function HomePage() {
       </section>
 
       {/* ==================== STATS SECTION ==================== */}
-      <section className="py-12 sm:py-16 bg-gradient-to-r from-primary-dark via-primary to-primary-light relative overflow-hidden">
+      <section className="py-12 sm:py-16 bg-linear-to-r from-primary-dark via-primary to-primary-light relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 left-1/4 w-40 h-40 bg-white rounded-full" />
           <div className="absolute bottom-0 right-1/4 w-60 h-60 bg-white rounded-full" />

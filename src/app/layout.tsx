@@ -16,23 +16,16 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     default:
-      "Meera Enterprises - Leading PPR-C Pipes & Fittings Supplier in India",
+      "Meera Enterprises - Quality, Comfort & Style for Every Space.",
     template: "%s | Meera Enterprises",
   },
   description:
-    "Meera Enterprises is a leading trader and supplier of PPR-C pipes and fittings for industrial applications. DIN 16962 compliant products with 50+ year service life. Serving businesses across India.",
+    "Meera Enterprises is a trusted furniture store, furniture supplier and home appliances dealer in Secunderabad, Hyderabad. Shop quality home furniture, office furniture, chairs, tables, fans and lighting products at the best price.",
   keywords: [
-    "PPR pipes",
-    "PPRC fittings",
-    "industrial piping",
-    "pipe supplier",
-    "Meera Enterprises",
-    "piping solutions India",
-    "PPR-C pipes supplier",
-    "DIN 16962 pipes",
-    "industrial pipe fittings",
-    "PPR valves",
-    "pipe welding tools",
+    "Furniture Store", "Furniture Supplier", "Furniture Dealer", "Home Furniture", "Office Furniture", "Furniture in Hyderabad", "Furniture in Secunderabad", "Home Appliances", "Home Appliances Supplier", "Furniture & Home Appliances",
+    "Chairs", "Office Chairs", "Plastic Chairs", "Dining Chairs", "Tables", "Office Tables", "Dining Tables", "Study Tables", "Electric Fans", "Ceiling Fans", "Lighting Products", "LED Lights", "Home Lighting", "Office Lighting",
+    "Furniture Shop in Secunderabad", "Furniture Store in Secunderabad", "Furniture Supplier in Hyderabad", "Furniture Dealer in Hyderabad", "Office Furniture in Secunderabad", "Home Appliances in Hyderabad", "Furniture Near Tirumalagiri", "Furniture Shop Near Tirumalagiri",
+    "Trusted Furniture Supplier", "Quality Furniture at Best Price", "Branded Furniture", "Affordable Furniture", "Furniture and Appliances Store", "Genuine Home Products", "Trusted Home Appliance Dealer", "Meera Enterprises",
   ],
   authors: [{ name: "Meera Enterprises" }],
   creator: "Meera Enterprises",
@@ -50,9 +43,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     siteName: "Meera Enterprises",
-    title: "Meera Enterprises - Leading PPR-C Pipes & Fittings Supplier",
+    title: "Meera Enterprises - Quality, Comfort & Style for Every Space.",
     description:
-      "Leading trader and supplier of PPR-C pipes and fittings for industrial applications. DIN 16962 compliant. Trusted by 500+ businesses.",
+      "Trusted furniture supplier and home appliance dealer serving Hyderabad, Secunderabad and Tirumalagiri with quality products at the best price.",
     images: [
       {
         url: "/Logo.png",
@@ -64,9 +57,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary",
-    title: "Meera Enterprises - PPR-C Pipes Supplier",
+    title: "Meera Enterprises | Furniture Supplier in Hyderabad",
     description:
-      "Leading supplier of industrial PPR-C piping solutions in India.",
+      "Shop home furniture, office furniture, chairs, tables, fans and lighting products from Meera Enterprises.",
     images: ["/Logo.png"],
   },
   robots: { index: true, follow: true },
@@ -88,7 +81,7 @@ const jsonLd = {
   },
   image: `${siteUrl}/Logo.png`,
   description:
-    "Leading trader and supplier of PPR-C pipes and fittings for industrial applications in India.",
+    "Trusted furniture supplier and home appliances dealer in Hyderabad and Secunderabad, offering genuine home products, office furniture and lighting solutions.",
   foundingDate: "2021",
   telephone: "+91-9030048871",
   email: "rajendrakushwaha366@gmail.com",

@@ -1,7 +1,7 @@
 export const companyInfo = {
   name: "Meera Enterprises",
   fullName: "Meera Enterprises",
-  tagline: "Powering Industrial Innovation",
+  tagline: "Powering Home & Office Solutions with Quality and Innovation",
   established: 2021,
   ceo: "R Singh",
   employees: "11 to 25",
@@ -28,12 +28,12 @@ export const companyInfo = {
   ],
   
   social: {
-    facebook: "https://www.facebook.com/Radiatechelectra/",
+    facebook: "",
     twitter: "#",
     linkedin: "#",
     youtube: "#",
-    instagram: "https://www.instagram.com/radia.tech?igsh=MTIwNzNkMG9tYmpvbg==",
-    indiamart: "https://www.indiamart.com/radiatechelectra/",
+    instagram: "",
+    indiamart: "",
   },
   
   about: {
@@ -85,8 +85,8 @@ export const companyInfo = {
   
   statsItems: [
     { value: "5+", label: "Years Experience" },
-    { value: "300+", label: "Happy Clients" },
-    { value: "1000+", label: "Projects Completed" },
+    { value: "200+", label: "Happy Clients" },
+    { value: "250+", label: "Projects Completed" },
     { value: "50+", label: "Years Product Life" },
   ],
 };

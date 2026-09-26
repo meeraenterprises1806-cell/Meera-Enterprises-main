@@ -29,7 +29,7 @@ export default function AboutPage() {
           </div>
         </div>
         <div className="relative h-64 overflow-hidden sm:h-80">
-          <Image src="/images/A1.jpg" alt="Meera Enterprises products" fill className="object-cover" />
+          <Image src="/47.png" alt="Meera Enterprises furniture" fill className="object-cover" />
           <div className="absolute bottom-0 right-0 bg-white/95 px-5 py-3 text-right shadow-lg"><span className="block text-2xl font-extrabold text-accent">Better Homes</span><span className="text-sm font-bold text-primary">Happier You</span></div>
         </div>
       </section>
