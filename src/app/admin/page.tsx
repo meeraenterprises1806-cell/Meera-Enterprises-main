@@ -88,7 +88,7 @@ export default function AdminDashboard() {
     { label: "Active Products", value: stats?.products ?? 0, icon: Package, tone: "bg-blue-50 text-primary", href: "/admin/products" },
     { label: "Categories", value: stats?.categories ?? 0, icon: FolderTree, tone: "bg-orange-50 text-accent", href: "/admin/categories" },
     { label: "Blog Posts", value: stats?.blogs ?? 0, icon: BookOpenText, tone: "bg-emerald-50 text-emerald-700", href: "/admin/blogs" },
-    { label: "Active Distributors", value: stats?.activeDistributors ?? 0, icon: Users, tone: "bg-cyan-50 text-cyan-700", href: "/admin/distributors" },
+    { label: "Active Sub-Dealers", value: stats?.activeDistributors ?? 0, icon: Users, tone: "bg-cyan-50 text-cyan-700", href: "/admin/distributors" },
     { label: "Unread Inquiries", value: stats?.inquiries.unread ?? 0, icon: Inbox, tone: "bg-amber-50 text-amber-700", href: "/admin/inquiries" },
   ];
 

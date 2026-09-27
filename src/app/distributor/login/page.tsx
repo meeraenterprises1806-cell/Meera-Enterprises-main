@@ -33,9 +33,9 @@ export default function DistributorLoginPage() {
       <section className="page-hero-background relative min-h-44 overflow-hidden sm:min-h-52">
         <div className="relative mx-auto flex min-h-44 max-w-7xl items-center px-6 py-6 sm:min-h-52 sm:py-8">
           <div>
-            <p className="mb-3 text-xs font-semibold text-white/80">Home <span className="mx-2 text-accent">›</span> Distributor <span className="mx-2 text-accent">›</span> Login</p>
-            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Distributor <span className="text-accent">Login</span></h1>
-            <p className="mt-3 max-w-lg text-sm font-medium leading-relaxed text-white/90">Access your distributor portal and stay connected with your business.</p>
+            <p className="mb-3 text-xs font-semibold text-white/80">Home <span className="mx-2 text-accent">›</span> Sub-Dealer <span className="mx-2 text-accent">›</span> Login</p>
+            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Sub-Dealer <span className="text-accent">Login</span></h1>
+            <p className="mt-3 max-w-lg text-sm font-medium leading-relaxed text-white/90">Access your Sub-Dealer portal and stay connected with your business.</p>
           </div>
         </div>
       </section>
@@ -53,7 +53,7 @@ export default function DistributorLoginPage() {
           <div className="flex items-center justify-center bg-gray-50 p-6 sm:p-10">
             <div className="w-full max-w-md border border-gray-200 bg-white p-6 sm:p-8">
               <div className="mb-5 flex items-center justify-between gap-4">
-                <h2 className="text-3xl font-extrabold text-primary">Distributor <span className="text-accent">Portal</span></h2>
+                <h2 className="text-3xl font-extrabold text-primary">Sub-Dealer <span className="text-accent">Portal</span></h2>
                 <Link href="/distributor" className="hidden items-center gap-1 text-xs font-semibold text-primary hover:text-accent sm:inline-flex"><ArrowLeft size={14} /> Back</Link>
               </div>
               <p className="mt-2 text-sm text-slate-600">Login to access your dashboard and manage assigned inquiries.</p>
@@ -88,7 +88,7 @@ export default function DistributorLoginPage() {
                 </button>
 
                 <Link href="/distributor/application" className="mt-2 block w-full rounded-full border border-accent bg-white px-4 py-3 text-center text-sm font-bold text-accent transition hover:bg-orange-50">
-                  New Distributor? Apply Here
+                  New Sub-Dealer? Apply Here
                 </Link>
               </form>
             </div>

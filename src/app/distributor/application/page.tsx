@@ -39,8 +39,8 @@ export default function DistributorApplicationPage() {
       <section className="page-hero-background relative min-h-44 overflow-hidden sm:min-h-52">
         <div className="relative mx-auto flex min-h-44 max-w-7xl items-center px-6 py-6 sm:min-h-52 sm:py-8">
           <div>
-            <p className="mb-3 text-xs font-semibold text-white/80">Home <span className="mx-2 text-accent">›</span> Distributor <span className="mx-2 text-accent">›</span> Application</p>
-            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Distributor <span className="text-accent">Application</span></h1>
+            <p className="mb-3 text-xs font-semibold text-white/80">Home <span className="mx-2 text-accent">›</span> Sub-Dealer <span className="mx-2 text-accent">›</span> Application</p>
+            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Sub-Dealer <span className="text-accent">Application</span></h1>
             <p className="mt-3 max-w-lg text-sm font-medium leading-relaxed text-white/90">Share your business details and take the first step toward a trusted partnership.</p>
           </div>
         </div>
@@ -55,7 +55,7 @@ export default function DistributorApplicationPage() {
               </div>
               <Link href="/distributor" className="hidden items-center gap-2 text-sm font-semibold text-primary transition hover:text-accent sm:inline-flex"><ArrowLeft size={16} /> Back</Link>
             </div>
-            <p className="mt-5 text-sm leading-7 text-gray-600">Fill in the details below to become our authorized distributor.</p>
+            <p className="mt-5 text-sm leading-7 text-gray-600">Fill in the details below to become our authorized Sub-Dealer.</p>
 
             <form onSubmit={handleSubmit} encType="multipart/form-data" className="mt-8 grid gap-4 md:grid-cols-2">
               {message && <p className="md:col-span-2 border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-700">{message}</p>}
@@ -103,7 +103,7 @@ export default function DistributorApplicationPage() {
                 Business Type
                 <select required name="businessType" defaultValue="" className="mt-1 w-full rounded-md border border-slate-300 bg-white px-3 py-2.5 text-sm outline-none focus:border-blue-500">
                   <option value="" disabled>Select Business Type</option>
-                  <option>Retailer</option><option>Wholesaler</option><option>Distributor</option><option>Dealer</option><option>Contractor</option>
+                  <option>Retailer</option><option>Wholesaler</option><option>Sub-Dealer</option><option>Dealer</option><option>Contractor</option>
                 </select>
               </label>
               <label className="text-sm font-medium text-slate-700">
@@ -153,7 +153,7 @@ export default function DistributorApplicationPage() {
                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-100 text-accent"><ShieldCheck size={18} /></div>
                 <div className="text-sm font-bold text-primary">3. Approval</div>
               </div>
-              <p className="text-xs leading-5 text-slate-600">Once approved, your distributorship is activated.</p>
+              <p className="text-xs leading-5 text-slate-600">Once approved, your Sub-Dealer account is activated.</p>
             </div>
           </aside>
       </section>

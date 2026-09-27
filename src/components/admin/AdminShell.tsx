@@ -15,7 +15,7 @@ const navItems = [
   { label: "Certifications", href: "/admin/infrastructure-gallery", icon: Award },
   { label: "Blog Posts", href: "/admin/blogs", icon: BookOpenText },
   { label: "Inquiries", href: "/admin/inquiries", icon: Inbox },
-  { label: "Distributors", href: "/admin/distributors", icon: Users },
+  { label: "Sub-Dealers", href: "/admin/distributors", icon: Users },
   { label: "My Profile", href: "/admin/profile", icon: UserCircle },
 ];
 

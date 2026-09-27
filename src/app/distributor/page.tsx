@@ -27,9 +27,9 @@ export default function DistributorPage() {
         <section className="page-hero-background relative min-h-44 overflow-hidden sm:min-h-52">
           <div className="relative mx-auto flex min-h-44 max-w-7xl items-center px-6 py-6 sm:min-h-52 sm:py-8">
             <div>
-              <p className="mb-3 text-xs font-semibold text-white/80">Home <span className="mx-2 text-accent">›</span> Distributor</p>
+              <p className="mb-3 text-xs font-semibold text-white/80">Home <span className="mx-2 text-accent">›</span> Sub-Dealer</p>
               <h1 className="max-w-xl text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
-                Become a Meera Enterprises <span className="text-accent">Distributor</span>
+                Become a Meera Enterprises <span className="text-accent">Sub-Dealer</span>
               </h1>
               <p className="mt-3 max-w-lg text-sm font-medium leading-relaxed text-white/90">
                 Grow your business with genuine products, trusted brands and qualified customer enquiries.
@@ -40,7 +40,7 @@ export default function DistributorPage() {
                   Apply Now
                 </Link>
                 <Link href="/distributor/login" className="inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/20">
-                  Distributor Login
+                  Sub-Dealer Login
                 </Link>
               </div>
             </div>
@@ -49,7 +49,7 @@ export default function DistributorPage() {
 
       <section className="bg-gray-50 py-10 sm:py-12">
         <div className="mx-auto max-w-7xl px-6">
-          <h2 className="text-3xl font-extrabold text-primary sm:text-4xl">Why Become Our <span className="text-accent">Distributor?</span></h2>
+          <h2 className="text-3xl font-extrabold text-primary sm:text-4xl">Why Become Our <span className="text-accent">Sub-Dealer?</span></h2>
           <div className="mt-3 h-1 w-12 bg-accent" />
           <div className="mt-8 grid divide-y border border-gray-200 bg-white sm:grid-cols-2 sm:divide-x sm:divide-y-0 lg:grid-cols-4">
             {reasons.map(({ icon: Icon, title, desc }) => (

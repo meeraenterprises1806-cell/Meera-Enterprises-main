@@ -39,7 +39,7 @@ export async function POST(request: Request) {
         create: {
           email: process.env.DISTRIBUTOR_EMAIL,
           password: await hashPassword(process.env.DISTRIBUTOR_PASSWORD),
-          name: process.env.DISTRIBUTOR_NAME || "Authorized Distributor",
+          name: process.env.DISTRIBUTOR_NAME || "Authorized Sub-Dealer",
           company: process.env.DISTRIBUTOR_COMPANY || "",
           phone: process.env.DISTRIBUTOR_PHONE || "",
         },

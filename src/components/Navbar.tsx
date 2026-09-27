@@ -20,7 +20,7 @@ const navLinks = [
   { label: "Catalogue", href: "/catalogue" },
   { label: "Certificates", href: "/infrastructure" },
   { label: "Brands We Deal In", href: "/clients" },
-  { label: "Distributor", href: "/distributor" },
+  { label: "Sub-Dealer", href: "/distributor" },
   { label: "Blogs", href: "/blogs" },
   { label: "Contact", href: "/contact" },
 ];

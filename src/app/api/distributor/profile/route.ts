@@ -29,7 +29,7 @@ export async function PUT(request: NextRequest) {
     if (currentPassword === newPassword) return NextResponse.json({ error: "New password must be different from the current password." }, { status: 400 });
 
     const distributor = await prisma.distributor.findUnique({ where: { id: session.id } });
-    if (!distributor || !distributor.isActive) return NextResponse.json({ error: "Distributor account not found." }, { status: 404 });
+    if (!distributor || !distributor.isActive) return NextResponse.json({ error: "Sub-Dealer account not found." }, { status: 404 });
     if (!(await verifyPassword(currentPassword, distributor.password))) return NextResponse.json({ error: "Current password is incorrect." }, { status: 401 });
 
     await prisma.distributor.update({ where: { id: distributor.id }, data: { password: await hashPassword(newPassword) } });

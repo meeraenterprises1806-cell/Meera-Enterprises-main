@@ -16,7 +16,7 @@ export async function GET() {
     return NextResponse.json(distributors);
   } catch (error) {
     logServerError("api.admin.distributors.GET", error);
-    return jsonError("Unable to load distributors.", 500);
+    return jsonError("Unable to load Sub-Dealers.", 500);
   }
 }
 
@@ -41,11 +41,11 @@ export async function POST(request: Request) {
   } catch (error) {
     logServerError("api.admin.distributors.POST", error);
     if (error && typeof error === "object" && "code" in error && error.code === "P2002") {
-      return jsonError("A distributor with this email already exists.", 409);
+      return jsonError("A Sub-Dealer with this email already exists.", 409);
     }
     if (error && typeof error === "object" && "code" in error && error.code === "P2021") {
-      return jsonError("Distributor tables are not available. Run the database migration first.", 503);
+      return jsonError("Sub-Dealer tables are not available. Run the database migration first.", 503);
     }
-    return jsonError("Unable to create distributor.", 500);
+    return jsonError("Unable to create Sub-Dealer.", 500);
   }
 }

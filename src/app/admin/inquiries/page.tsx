@@ -184,16 +184,16 @@ export default function AdminInquiriesPage() {
               </div>
               {selected.quantity && <Detail label="Quantity" value={selected.quantity} />}
               <div>
-                <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-400">Assigned Distributor</p>
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-400">Assigned Sub-Dealer</p>
                 <select
                   value={transferDistributorId}
                   onChange={(event) => setTransferDistributorId(event.target.value)}
                   className="w-full border border-slate-200 bg-white px-3 py-2.5 text-sm text-slate-700 outline-none focus:border-primary"
                 >
-                  <option value="">Select distributor</option>
+                  <option value="">Select Sub-Dealer</option>
                   {distributors.map((distributor) => <option key={distributor.id} value={distributor.id}>{distributor.name}{distributor.company ? ` - ${distributor.company}` : ""}</option>)}
                 </select>
-                {distributors.length === 0 && <p className="mt-2 text-xs text-amber-600">Create an active distributor account before assigning inquiries.</p>}
+                {distributors.length === 0 && <p className="mt-2 text-xs text-amber-600">Create an active Sub-Dealer account before assigning inquiries.</p>}
                 <button
                   type="button"
                   onClick={() => { void transferInquiry(); }}

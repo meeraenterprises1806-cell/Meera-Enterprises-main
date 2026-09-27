@@ -44,7 +44,7 @@ export async function POST(request: Request) {
   } catch (error) {
     logServerError("api.distributor.applications.POST", error);
     if (error && typeof error === "object" && "code" in error && error.code === "P2021") {
-      return jsonError("Distributor application table is not available. Run the database migration first.", 503);
+      return jsonError("Sub-Dealer application table is not available. Run the database migration first.", 503);
     }
     if (error instanceof TypeError && error.message.includes("distributorApplication")) {
       return jsonError("The server database client is stale. Restart the application and try again.", 503);
