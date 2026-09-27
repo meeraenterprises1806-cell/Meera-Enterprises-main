@@ -6,25 +6,25 @@ import { companyInfo } from "@/data/company";
 import { getRecentPublishedBlogs, parseBlogImages } from "@/lib/publicBlogs";
 import { getPublicProjectImages } from "@/lib/publicGalleries";
 import {
-  getPublicCategories,
-  getPublicFeaturedProducts,
-  getPublicNewArrivals,
+    getPublicCategories,
+    getPublicFeaturedProducts,
+    getPublicNewArrivals,
 } from "@/lib/publicProducts";
 import {
-  ArrowRight,
-  Award,
-  Calendar,
-  CheckCircle,
-  ChevronRight,
-  Clock,
-  Factory,
-  Phone,
-  Shield,
-  Star,
-  Tag,
-  Truck,
-  Users,
-  Wrench,
+    ArrowRight,
+    Award,
+    Calendar,
+    CheckCircle,
+    ChevronRight,
+    Clock,
+    Factory,
+    Phone,
+    Shield,
+    Star,
+    Tag,
+    Truck,
+    Users,
+    Wrench,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -59,21 +59,8 @@ export default async function HomePage() {
   return (
     <main>
       {/* ==================== HERO SECTION ==================== */}
-      <section className="relative overflow-hidden bg-gray-50">
-        {/* BACKGROUND: Kept as requested */}
-        <div className="absolute inset-0">
-          <Image
-            src="/images/H1-photoaidcom-blur (1).jpg"
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gray-900/40" />
-        </div>
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24">
+      <section className="page-hero-background relative overflow-hidden">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-10 lg:py-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
             {/* LEFT: Headline + USPs (Placement Preserved) */}
             <div className="text-white pt-2 sm:pt-4">
@@ -214,7 +201,7 @@ export default async function HomePage() {
           </div>
 
           <div className="relative h-72 overflow-hidden sm:h-88">
-            <Image src="/images%20(14).png" alt="Meera Enterprises chair and furniture" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
+            <Image src="/images/ch.png" alt="Meera Enterprises chair and furniture" fill sizes="(min-width: 1024px) 50vw, 100vw" className="object-cover" />
             <div className="absolute bottom-0 right-0 bg-white/95 px-6 py-4 text-right shadow-lg">
               <span className="block text-2xl font-extrabold text-accent">Better Homes</span>
               <span className="text-sm font-bold text-primary">Happier You</span>

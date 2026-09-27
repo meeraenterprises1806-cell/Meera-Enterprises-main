@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowLeft, Clock3, Package, ShieldCheck } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 
@@ -37,13 +36,11 @@ export default function DistributorApplicationPage() {
 
   return (
     <main className="overflow-hidden bg-white">
-      <section className="relative min-h-60 overflow-hidden bg-primary sm:min-h-72">
-        <Image src="/images/aboutus.jpg" alt="Distributor partnership" fill priority className="object-cover object-center opacity-75" />
-        <div className="absolute inset-0 bg-linear-to-r from-[#071827] via-[#071827]/85 to-transparent" />
-        <div className="relative mx-auto flex min-h-60 max-w-7xl items-center px-6 py-10 sm:min-h-72 sm:py-12">
+      <section className="page-hero-background relative min-h-44 overflow-hidden sm:min-h-52">
+        <div className="relative mx-auto flex min-h-44 max-w-7xl items-center px-6 py-6 sm:min-h-52 sm:py-8">
           <div>
             <p className="mb-3 text-xs font-semibold text-white/80">Home <span className="mx-2 text-accent">›</span> Distributor <span className="mx-2 text-accent">›</span> Application</p>
-            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">Distributor <span className="text-accent">Application</span></h1>
+            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Distributor <span className="text-accent">Application</span></h1>
             <p className="mt-3 max-w-lg text-sm font-medium leading-relaxed text-white/90">Share your business details and take the first step toward a trusted partnership.</p>
           </div>
         </div>
@@ -135,10 +132,6 @@ export default function DistributorApplicationPage() {
           </div>
 
           <aside className="space-y-4">
-            <div className="overflow-hidden border border-gray-200 bg-white">
-              <Image src="/images/aboutus.jpg" alt="Distributor partnership" width={600} height={280} className="h-44 w-full object-cover" />
-            </div>
-
             <div className="border border-gray-200 bg-gray-50 p-5">
               <div className="mb-3 flex items-center gap-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-orange-100 text-accent"><Package size={18} /></div>

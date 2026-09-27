@@ -7,13 +7,11 @@ import Link from "next/link";
 export default function AboutPage() {
   return (
     <main className="overflow-hidden bg-white">
-      <section className="relative min-h-60 overflow-hidden bg-primary sm:min-h-72">
-        <Image src="/images/aboutus.png" alt="Meera Enterprises products" fill priority className="object-cover object-right opacity-80" />
-        <div className="absolute inset-0 bg-linear-to-r from-[#071827] via-[#071827]/85 to-transparent" />
-        <div className="relative mx-auto flex min-h-60 max-w-7xl items-center px-6 py-10 sm:min-h-72 sm:py-12">
+      <section className="page-hero-background relative min-h-44 overflow-hidden sm:min-h-52">
+        <div className="relative mx-auto flex min-h-44 max-w-7xl items-center px-6 py-6 sm:min-h-52 sm:py-8">
           <div>
             <p className="mb-3 text-xs font-semibold text-white/80">Home <span className="mx-2 text-accent">›</span> About Us</p>
-            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">About <span className="text-accent">Us</span></h1>
+            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">About <span className="text-accent">Us</span></h1>
             <p className="mt-3 max-w-sm text-sm font-medium leading-relaxed text-white/90">Your Trusted Partner for Quality Furniture, Home Essentials &amp; More.</p>
           </div>
         </div>
@@ -29,7 +27,7 @@ export default function AboutPage() {
           </div>
         </div>
         <div className="relative h-64 overflow-hidden sm:h-80">
-          <Image src="/47.png" alt="Meera Enterprises furniture" fill className="object-cover" />
+          <Image src="/images/AU.png" alt="Meera Enterprises furniture" fill className="object-cover" />
           <div className="absolute bottom-0 right-0 bg-white/95 px-5 py-3 text-right shadow-lg"><span className="block text-2xl font-extrabold text-accent">Better Homes</span><span className="text-sm font-bold text-primary">Happier You</span></div>
         </div>
       </section>
@@ -70,7 +68,7 @@ export default function AboutPage() {
           </ul>
         </div>
         <div className="relative h-56 overflow-hidden sm:h-72">
-          <Image src="/images/p4.jpg" alt="Meera Enterprises product range" fill className="object-cover" />
+          <Image src="/images/ch2.png" alt="Meera Enterprises product range" fill className="object-cover" />
         </div>
       </section>
 

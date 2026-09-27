@@ -44,6 +44,10 @@ body {
   font-family: var(--font-sans), Arial, Helvetica, sans-serif;
 }
 
+.page-hero-background {
+  background: linear-gradient(115deg, var(--primary-dark) 0%, var(--primary) 58%, var(--accent-dark) 100%);
+}
+
 html {
   scroll-behavior: smooth;
   scrollbar-color: var(--primary) var(--gray-100);

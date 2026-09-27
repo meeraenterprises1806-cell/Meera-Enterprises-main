@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowLeft, Eye, Lock, Mail } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useState } from "react";
@@ -31,22 +30,18 @@ export default function DistributorLoginPage() {
 
   return (
     <main className="overflow-hidden bg-white">
-      <section className="relative min-h-60 overflow-hidden bg-primary sm:min-h-72">
-        <Image src="/images/aboutus.jpg" alt="Distributor login" fill priority className="object-cover object-center opacity-75" />
-        <div className="absolute inset-0 bg-linear-to-r from-[#071827] via-[#071827]/85 to-transparent" />
-        <div className="relative mx-auto flex min-h-60 max-w-7xl items-center px-6 py-10 sm:min-h-72 sm:py-12">
+      <section className="page-hero-background relative min-h-44 overflow-hidden sm:min-h-52">
+        <div className="relative mx-auto flex min-h-44 max-w-7xl items-center px-6 py-6 sm:min-h-52 sm:py-8">
           <div>
             <p className="mb-3 text-xs font-semibold text-white/80">Home <span className="mx-2 text-accent">›</span> Distributor <span className="mx-2 text-accent">›</span> Login</p>
-            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">Distributor <span className="text-accent">Login</span></h1>
+            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Distributor <span className="text-accent">Login</span></h1>
             <p className="mt-3 max-w-lg text-sm font-medium leading-relaxed text-white/90">Access your distributor portal and stay connected with your business.</p>
           </div>
         </div>
       </section>
 
       <section className="mx-auto grid max-w-7xl gap-10 px-6 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:py-16">
-          <div className="relative hidden min-h-155 overflow-hidden bg-gray-100 lg:block">
-            <Image src="/images/aboutus.jpg" alt="Distributor login" fill className="object-cover opacity-80" />
-            <div className="absolute inset-0 bg-linear-to-r from-[#071827]/75 to-[#071827]/15" />
+          <div className="page-hero-background relative hidden min-h-155 overflow-hidden lg:block">
             <div className="relative z-10 flex h-full flex-col justify-end p-8 text-white">
               <div className="max-w-sm">
                 <h2 className="text-3xl font-extrabold">Your Partner Portal</h2>

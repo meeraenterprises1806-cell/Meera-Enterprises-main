@@ -32,9 +32,9 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
   return (
     <main className="bg-white">
       {/* Hero Section */}
-      <section className="bg-primary py-5">
+      <section className="page-hero-background py-4">
         <div className="max-w-4xl mx-auto px-6">
-          <Link href="/blogs" className="inline-flex items-center gap-2 text-blue-200 hover:text-white text-sm font-medium mb-6 transition-colors">
+          <Link href="/blogs" className="inline-flex items-center gap-2 text-blue-200 hover:text-white text-sm font-medium mb-4 transition-colors">
             <ArrowLeft size={16} /> Back to Blog
           </Link>
           {tags[0] && (
@@ -42,7 +42,7 @@ export default async function BlogDetailPage({ params }: { params: Promise<{ slu
               {tags[0]}
             </span>
           )}
-          <h1 className="text-4xl lg:text-5xl font-extrabold text-white mb-6 leading-tight">{blog.title}</h1>
+          <h1 className="text-3xl lg:text-4xl font-extrabold text-white mb-4 leading-tight">{blog.title}</h1>
           <div className="flex flex-wrap items-center gap-6 text-blue-200 text-sm">
             <span className="flex items-center gap-2">
               <Calendar size={16} />

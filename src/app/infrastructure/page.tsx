@@ -15,13 +15,11 @@ export default async function InfrastructurePage() {
 
   return (
     <main className="overflow-hidden bg-white">
-      <section className="relative min-h-60 overflow-hidden bg-primary sm:min-h-72">
-        <Image src="/ourinframainimg.png" alt="Meera Enterprises quality and compliance" fill priority className="object-cover object-center opacity-45" />
-        <div className="absolute inset-0 bg-linear-to-r from-[#071827] via-[#071827]/85 to-transparent" />
-        <div className="relative mx-auto flex min-h-60 max-w-7xl items-center px-6 py-10 sm:min-h-72 sm:py-12">
+      <section className="page-hero-background relative min-h-44 overflow-hidden sm:min-h-52">
+        <div className="relative mx-auto flex min-h-44 max-w-7xl items-center px-6 py-6 sm:min-h-52 sm:py-8">
           <div>
             <p className="mb-3 text-xs font-semibold text-white/80">Home <span className="mx-2 text-accent">›</span> Certificates</p>
-            <h1 className="text-4xl font-extrabold text-white sm:text-5xl">Business <span className="text-accent">Certificates</span></h1>
+            <h1 className="text-3xl font-extrabold text-white sm:text-4xl">Business <span className="text-accent">Certificates</span></h1>
             <p className="mt-3 max-w-lg text-sm font-medium leading-relaxed text-white/90">Company credentials and supporting documents for {companyInfo.name}.</p>
           </div>
         </div>

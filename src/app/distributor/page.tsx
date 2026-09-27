@@ -1,5 +1,4 @@
 import { CheckCircle2, Handshake, ShieldCheck, Star, TrendingUp, Users } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 
 const productHighlights = [
@@ -25,20 +24,11 @@ const benefits = [
 export default function DistributorPage() {
   return (
     <main className="overflow-hidden bg-white">
-      <section className="relative min-h-60 overflow-hidden bg-primary sm:min-h-72">
-          <Image
-            src="/images/aboutus.jpg"
-            alt="Distributor partnership"
-            fill
-            className="object-cover object-center opacity-75"
-            priority
-          />
-          <div className="absolute inset-0 bg-linear-to-r from-[#071827] via-[#071827]/85 to-transparent" />
-
-          <div className="relative mx-auto flex min-h-60 max-w-7xl items-center px-6 py-10 sm:min-h-72 sm:py-12">
+        <section className="page-hero-background relative min-h-44 overflow-hidden sm:min-h-52">
+          <div className="relative mx-auto flex min-h-44 max-w-7xl items-center px-6 py-6 sm:min-h-52 sm:py-8">
             <div>
               <p className="mb-3 text-xs font-semibold text-white/80">Home <span className="mx-2 text-accent">›</span> Distributor</p>
-              <h1 className="max-w-xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
+              <h1 className="max-w-xl text-3xl font-extrabold tracking-tight text-white sm:text-4xl">
                 Become a Meera Enterprises <span className="text-accent">Distributor</span>
               </h1>
               <p className="mt-3 max-w-lg text-sm font-medium leading-relaxed text-white/90">

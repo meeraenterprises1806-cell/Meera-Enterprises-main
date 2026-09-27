@@ -10,13 +10,11 @@ export const metadata = {
 export default function ClientsPage() {
   return (
     <main className="bg-white">
-      <section className="relative min-h-60 overflow-hidden bg-primary sm:min-h-72">
-        <Image src="/images/aboutus.png" alt="Brands at Meera Enterprises" fill priority className="object-cover object-right opacity-80" />
-        <div className="absolute inset-0 bg-linear-to-r from-[#071827] via-[#071827]/85 to-transparent" />
-        <div className="relative mx-auto flex min-h-60 max-w-7xl items-center px-6 py-10 sm:min-h-72 sm:py-12">
+      <section className="page-hero-background relative min-h-44 overflow-hidden sm:min-h-52">
+        <div className="relative mx-auto flex min-h-44 max-w-7xl items-center px-6 py-6 sm:min-h-52 sm:py-8">
           <div>
             <p className="mb-3 text-xs font-semibold text-white/80">Home <span className="mx-2 text-accent">›</span> Brands</p>
-            <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">We Deal In <span className="text-accent">Brands</span></h1>
+            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">We Deal In <span className="text-accent">Brands</span></h1>
             <p className="mt-3 max-w-md text-sm font-medium leading-relaxed text-white/90">
               Trusted brands and genuine products for every home, office and commercial space.
             </p>

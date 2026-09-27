@@ -1,11 +1,11 @@
 "use client";
 
+import AdminShell from "@/components/admin/AdminShell";
+import { BookOpenText, FolderTree, Inbox, Package, TrendingUp, Users } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { BookOpenText, FolderTree, Inbox, Package, TrendingUp } from "lucide-react";
 import { Bar, BarChart, CartesianGrid, Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import AdminShell from "@/components/admin/AdminShell";
 
 interface Inquiry {
   id: string;
@@ -26,6 +26,7 @@ interface Stats {
   products: number;
   categories: number;
   blogs: number;
+  activeDistributors: number;
   inquiries: { total: number; unread: number };
   recentInquiries: Inquiry[];
   categoriesWithCounts?: CategoryCount[];
@@ -87,6 +88,7 @@ export default function AdminDashboard() {
     { label: "Active Products", value: stats?.products ?? 0, icon: Package, tone: "bg-blue-50 text-primary", href: "/admin/products" },
     { label: "Categories", value: stats?.categories ?? 0, icon: FolderTree, tone: "bg-orange-50 text-accent", href: "/admin/categories" },
     { label: "Blog Posts", value: stats?.blogs ?? 0, icon: BookOpenText, tone: "bg-emerald-50 text-emerald-700", href: "/admin/blogs" },
+    { label: "Active Distributors", value: stats?.activeDistributors ?? 0, icon: Users, tone: "bg-cyan-50 text-cyan-700", href: "/admin/distributors" },
     { label: "Unread Inquiries", value: stats?.inquiries.unread ?? 0, icon: Inbox, tone: "bg-amber-50 text-amber-700", href: "/admin/inquiries" },
   ];
 
@@ -101,8 +103,8 @@ export default function AdminDashboard() {
       }
     >
       {loading ? (
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {[1, 2, 3, 4].map((item) => (
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+          {[1, 2, 3, 4, 5].map((item) => (
             <div key={item} className="h-32 animate-pulse border border-slate-200 bg-white" />
           ))}
         </div>
@@ -110,7 +112,7 @@ export default function AdminDashboard() {
         <div className="border border-red-200 bg-red-50 px-5 py-6 text-sm font-medium text-red-700">{error}</div>
       ) : (
         <div className="space-y-6">
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
             {statCards.map((card) => {
               const Icon = card.icon;
               return (

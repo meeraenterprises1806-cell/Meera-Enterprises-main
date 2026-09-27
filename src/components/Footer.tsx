@@ -11,11 +11,11 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-600 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
           {/* Company Info */}
           <div className="col-span-2 lg:col-span-1">
-            <div className="flex items-center gap-2 mb-3">
+            <div className="flex items-center gap-2 mb-2">
               <Image
                 src="/Logo.png"
                 alt={companyInfo.name}
@@ -28,7 +28,7 @@ export default function Footer() {
                 <span className="text-accent">Enterprises</span>
               </span>
             </div>
-            <p className="text-xs leading-relaxed mb-4 text-white max-w-sm">
+            <p className="text-xs leading-relaxed mb-3 text-white max-w-sm">
               {companyInfo.about.short}
             </p>
             {/* Icons restored with correct SVG paths */}
@@ -78,10 +78,10 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-sm font-semibold text-white mb-3">
+            <h3 className="text-sm font-semibold text-white mb-2">
               Quick Links
             </h3>
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-1">
               {[
                 { label: "Home", href: "/" },
                 { label: "About Us", href: "/about" },
@@ -106,10 +106,10 @@ export default function Footer() {
 
           {/* Our Products */}
           <div>
-            <h3 className="text-sm font-semibold text-white mb-3">
+            <h3 className="text-sm font-semibold text-white mb-2">
               Our Products
             </h3>
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-1.5">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-1">
               {productLinks.map((link) => (
                 <li key={link.href}>
                   <Link
@@ -125,10 +125,10 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="col-span-2 lg:col-span-1">
-            <h3 className="text-sm font-semibold text-white mb-3">
+            <h3 className="text-sm font-semibold text-white mb-2">
               Get In Touch
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-1.5">
               <li className="flex items-start gap-2">
                 <MapPin size={14} className="text-accent shrink-0 mt-0.5" />
                 <span className="text-xs">
@@ -163,7 +163,7 @@ export default function Footer() {
                 </a>
               </li>
             </ul>
-            <div className="mt-4 flex gap-2">
+            <div className="mt-3 flex gap-2">
               <Link
                 href="/contact"
                 className="bg-accent hover:bg-accent-dark text-white px-4 py-2 rounded text-xs font-semibold transition-colors"
@@ -185,7 +185,7 @@ export default function Footer() {
 
       {/* Bottom Bar */}
       <div className="border-t border-white/5">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex flex-col sm:flex-row justify-between items-center gap-2 text-[10px] text-white">
+        <div className="max-w-7xl mx-auto px-4 py-2 flex flex-col sm:flex-row justify-between items-center gap-2 text-[10px] text-white">
           <p>
             &copy; {new Date().getFullYear()} {companyInfo.fullName}. All Rights
             Reserved.
