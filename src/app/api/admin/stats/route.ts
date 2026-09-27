@@ -8,9 +8,13 @@ export async function GET() {
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
   try {
-    const [productCount, categoryCount, blogCount, activeDistributorCount, totalInquiries, unreadInquiries, recentInquiries, categoriesWithCounts] = await Promise.all([
+    const [productCount, categoryCount, brandCount, blogCount, activeDistributorCount, totalInquiries, unreadInquiries, recentInquiries, categoriesWithCounts] = await Promise.all([
       prisma.product.count({ where: { isActive: true } }),
       prisma.productCategory.count(),
+      prisma.brand.count().catch((error: unknown) => {
+        if (error && typeof error === "object" && "code" in error && error.code === "P2021") return 0;
+        throw error;
+      }),
       prisma.blogPost.count(),
       prisma.distributor.count({ where: { isActive: true } }),
       prisma.inquiry.count(),
@@ -25,6 +29,7 @@ export async function GET() {
     return NextResponse.json({
       products: productCount,
       categories: categoryCount,
+      brands: brandCount,
       blogs: blogCount,
       activeDistributors: activeDistributorCount,
       inquiries: { total: totalInquiries, unread: unreadInquiries },

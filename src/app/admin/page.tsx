@@ -1,11 +1,11 @@
 "use client";
 
 import AdminShell from "@/components/admin/AdminShell";
-import { BookOpenText, FolderTree, Inbox, Package, TrendingUp, Users } from "lucide-react";
+import { BookOpenText, FolderTree, Inbox, Package, Tag, TrendingUp, Users } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { Bar, BarChart, CartesianGrid, Cell, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
+import { Bar, BarChart, CartesianGrid, Cell, LabelList, Legend, Pie, PieChart, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
 
 interface Inquiry {
   id: string;
@@ -25,6 +25,7 @@ interface CategoryCount {
 interface Stats {
   products: number;
   categories: number;
+  brands: number;
   blogs: number;
   activeDistributors: number;
   inquiries: { total: number; unread: number };
@@ -87,6 +88,7 @@ export default function AdminDashboard() {
   const statCards = [
     { label: "Active Products", value: stats?.products ?? 0, icon: Package, tone: "bg-blue-50 text-primary", href: "/admin/products" },
     { label: "Categories", value: stats?.categories ?? 0, icon: FolderTree, tone: "bg-orange-50 text-accent", href: "/admin/categories" },
+    { label: "Total Brands", value: stats?.brands ?? 0, icon: Tag, tone: "bg-cyan-50 text-cyan-700", href: "/admin/brands" },
     { label: "Blog Posts", value: stats?.blogs ?? 0, icon: BookOpenText, tone: "bg-emerald-50 text-emerald-700", href: "/admin/blogs" },
     { label: "Active Sub-Dealers", value: stats?.activeDistributors ?? 0, icon: Users, tone: "bg-cyan-50 text-cyan-700", href: "/admin/distributors" },
     { label: "Unread Inquiries", value: stats?.inquiries.unread ?? 0, icon: Inbox, tone: "bg-amber-50 text-amber-700", href: "/admin/inquiries" },
@@ -103,8 +105,8 @@ export default function AdminDashboard() {
       }
     >
       {loading ? (
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-          {[1, 2, 3, 4, 5].map((item) => (
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-6">
+          {[1, 2, 3, 4, 5, 6].map((item) => (
             <div key={item} className="h-32 animate-pulse border border-slate-200 bg-white" />
           ))}
         </div>
@@ -112,7 +114,7 @@ export default function AdminDashboard() {
         <div className="border border-red-200 bg-red-50 px-5 py-6 text-sm font-medium text-red-700">{error}</div>
       ) : (
         <div className="space-y-6">
-          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-6">
             {statCards.map((card) => {
               const Icon = card.icon;
               return (
@@ -212,25 +214,21 @@ export default function AdminDashboard() {
               <p className="text-sm text-slate-500">Total count of each content type managed in the admin.</p>
             </div>
             <div className="px-2 py-5">
-              <ResponsiveContainer width="100%" height={180}>
+              <ResponsiveContainer width="100%" height={260}>
                 <BarChart
                   layout="vertical"
-                  data={[
-                    { name: "Products", value: stats?.products ?? 0, fill: "#1e40af" },
-                    { name: "Categories", value: stats?.categories ?? 0, fill: "#0891b2" },
-                    { name: "Blog Posts", value: stats?.blogs ?? 0, fill: "#059669" },
-                    { name: "Total Inquiries", value: stats?.inquiries.total ?? 0, fill: "#ca8a04" },
-                  ]}
-                  margin={{ top: 4, right: 40, left: 10, bottom: 4 }}
+                  data={statCards.map((card) => ({ name: card.label, value: card.value }))}
+                  margin={{ top: 4, right: 44, left: 10, bottom: 4 }}
                 >
                   <CartesianGrid strokeDasharray="3 3" stroke="#f1f5f9" horizontal={false} />
                   <XAxis type="number" tick={{ fontSize: 11, fill: "#64748b" }} allowDecimals={false} />
-                  <YAxis type="category" dataKey="name" tick={{ fontSize: 12, fill: "#64748b" }} width={90} />
+                  <YAxis type="category" dataKey="name" tick={{ fontSize: 12, fill: "#64748b" }} width={128} />
                   <Tooltip contentStyle={{ fontSize: 12, borderRadius: 0, border: "1px solid #e2e8f0" }} />
                   <Bar dataKey="value" name="Count" radius={[0, 2, 2, 0]}>
-                    {[0, 1, 2, 3].map((index) => (
-                      <Cell key={`bar-${index}`} fill={["#1e40af", "#0891b2", "#059669", "#ca8a04"][index]} />
+                    {statCards.map((card, index) => (
+                      <Cell key={card.label} fill={CHART_COLORS[index % CHART_COLORS.length]} />
                     ))}
+                    <LabelList dataKey="value" position="right" fill="#334155" fontSize={11} />
                   </Bar>
                 </BarChart>
               </ResponsiveContainer>
