@@ -1,7 +1,7 @@
 "use client";
 
 import { companyInfo } from "@/data/company";
-import { Award, BarChart3, BookOpenText, FolderTree, ImageIcon, Inbox, LogOut, Menu, Package, UserCircle, Users, X } from "lucide-react";
+import { Award, BarChart3, BookOpenText, FolderTree, ImageIcon, Inbox, LogOut, Menu, Package, Tag, UserCircle, Users, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
@@ -11,6 +11,7 @@ const navItems = [
   { label: "Dashboard", href: "/admin", icon: BarChart3 },
   { label: "Products", href: "/admin/products", icon: Package },
   { label: "Categories", href: "/admin/categories", icon: FolderTree },
+  { label: "Brands", href: "/admin/brands", icon: Tag },
   { label: "Trending", href: "/admin/projects", icon: ImageIcon },
   { label: "Certifications", href: "/admin/infrastructure-gallery", icon: Award },
   { label: "Blog Posts", href: "/admin/blogs", icon: BookOpenText },

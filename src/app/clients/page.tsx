@@ -1,5 +1,5 @@
 import RatingSummary from "@/components/RatingSummary";
-import { companyInfo } from "@/data/company";
+import { getPublicBrands } from "@/lib/publicGalleries";
 import Image from "next/image";
 
 export const metadata = {
@@ -7,7 +7,9 @@ export const metadata = {
   description: "Explore trusted brands offering genuine furniture, appliances, fans, lighting and commercial solutions.",
 };
 
-export default function ClientsPage() {
+export default async function ClientsPage() {
+  const brands = await getPublicBrands();
+
   return (
     <main className="bg-white">
       <section className="page-hero-background relative min-h-44 overflow-hidden sm:min-h-52">
@@ -32,25 +34,26 @@ export default function ClientsPage() {
         </div>
           
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-            {companyInfo.clientLogos.map((client) => (
+            {brands.map((brand) => (
               <div 
-                key={client.name} 
+                key={brand.id}
                 className="group flex flex-col items-center justify-center gap-4 border border-gray-200 bg-white p-6 transition-all duration-300 hover:border-accent hover:shadow-lg sm:p-8"
               >
                 <div className="relative h-20 w-full flex items-center justify-center">
                   <Image 
-                    src={client.image} 
-                    alt={client.name} 
+                    src={brand.image}
+                    alt={brand.name}
                     fill 
                     className="object-contain grayscale group-hover:grayscale-0 transition-all duration-300" 
                   />
                 </div>
                 <span className="text-gray-700 text-sm font-semibold tracking-wide text-center">
-                  {client.name}
+                  {brand.name}
                 </span>
               </div>
             ))}
           </div>
+          {brands.length === 0 && <p className="text-sm text-gray-500">Our brand list is being updated.</p>}
       </section>
 
       {/* Ratings Section */}

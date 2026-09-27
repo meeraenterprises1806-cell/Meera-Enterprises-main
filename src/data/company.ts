@@ -79,13 +79,6 @@ export const companyInfo = {
     "Efficient Packaging & Delivery",
   ],
   
-  clientLogos: [
-    { name: "Ahuja", image: "/images/clients/AHUJA.png" },
-    { name: "Crompton", image: "/images/clients/CROMPTION.png" },
-    { name: "Supreme Furniture", image: "/images/clients/SUPREME FURNITURE.png" },
-    { name: "Samsung", image: "/images/clients/SAMSUNG.jpg" },
-  ],
-  
   statsItems: [
     { value: "1+", label: "Years Experience" },
     { value: "120+", label: "Happy Clients" },

@@ -11,6 +11,13 @@ export type PublicGalleryImage = {
   updatedAt?: Date;
 };
 
+export type PublicBrand = {
+  id: string;
+  name: string;
+  image: string;
+  createdAt?: Date;
+};
+
 const fallbackProjectImages: PublicGalleryImage[] = [
   { id: "project-cooling-tower-piping-installation", title: "Cooling Tower Piping Installation", image: "/images/projects/WhatsApp Image 2026-04-17 at 12.17.21 PM.jpeg", sortOrder: 1 },
   { id: "project-industrial-pprc-pipeline-system", title: "Industrial PPR-C Pipeline System", image: "/images/projects/WhatsApp Image 2026-04-17 at 12.17.20 PM (1).jpeg", sortOrder: 2 },
@@ -66,5 +73,12 @@ export async function getPublicCertifications() {
   return queryPublicGallery(
     (client) => client.certification.findMany({ orderBy: galleryOrder }),
     [],
+  );
+}
+
+export async function getPublicBrands() {
+  return queryPublicGallery(
+    (client) => client.brand.findMany({ orderBy: { createdAt: "asc" } }),
+    [] as PublicBrand[],
   );
 }

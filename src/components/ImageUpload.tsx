@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRef, useState } from "react";
 
 interface ImageUploadProps {
-  folder: "products" | "categories" | "blogs" | "projects" | "infrastructure" | "certifications";
+  folder: "products" | "categories" | "blogs" | "projects" | "infrastructure" | "certifications" | "brands";
   onImageSelect: (url: string) => void;
   currentImage?: string;
   label?: string;

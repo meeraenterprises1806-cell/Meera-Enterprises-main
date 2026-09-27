@@ -4,7 +4,7 @@ import RatingSummary from "@/components/RatingSummary";
 import TrendingCarousel from "@/components/TrendingCarousel";
 import { companyInfo } from "@/data/company";
 import { getRecentPublishedBlogs, parseBlogImages } from "@/lib/publicBlogs";
-import { getPublicProjectImages } from "@/lib/publicGalleries";
+import { getPublicBrands, getPublicProjectImages } from "@/lib/publicGalleries";
 import {
     getPublicCategories,
     getPublicFeaturedProducts,
@@ -48,12 +48,14 @@ export default async function HomePage() {
     featuredProducts,
     projectImages,
     recentBlogs,
+    brands,
   ] = await Promise.all([
     getPublicCategories(),
     getPublicNewArrivals(8),
     getPublicFeaturedProducts(8),
     getPublicProjectImages(),
     getRecentPublishedBlogs(3),
+    getPublicBrands(),
   ]);
 
   return (
@@ -759,14 +761,14 @@ export default async function HomePage() {
           </div>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-8">
-            {companyInfo.clientLogos.map((client) => (
+            {brands.map((brand) => (
               <div
-                key={client.name}
+                key={brand.id}
                 className="flex items-center justify-center h-32 bg-white rounded-2xl border border-gray-100 hover:border-primary/20 hover:shadow-xl transition-all duration-300 group"
               >
                 <Image
-                  src={client.image}
-                  alt={client.name}
+                  src={brand.image}
+                  alt={brand.name}
                   width={140}
                   height={60}
                   className="max-h-16 w-auto object-contain opacity-60 group-hover:opacity-100 transition-opacity duration-300 grayscale group-hover:grayscale-0"
