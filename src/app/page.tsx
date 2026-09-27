@@ -591,28 +591,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* ==================== PROJECT SHOWCASE ==================== */}
-      {/* <section className="py-20 sm:py-28 bg-gray-50" id="projects">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center gap-3 mb-4">
-              <div className="w-10 h-0.5 bg-primary" />
-              <span className="text-primary font-bold text-sm uppercase tracking-[0.2em]">
-                PORTFOLIO
-              </span>
-            </div>
-            <h2 className="text-4xl font-extrabold text-gray-900 mb-4">
-              Our Projects
-            </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              Showcasing our expertise in industrial piping installations across
-              process industries.
-            </p>
-          </div>
-
-          <ExpandableGallery images={projectImages} initialLimit={6} />
-        </div>
-      </section> */}
+    
 
       {/* ==================== APPLICATIONS ==================== */}
       <section className="py-20 sm:py-28 bg-white" id="applications">
