@@ -91,7 +91,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
         <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h3 className="text-2xl font-bold mb-2">Need Expert Assistance?</h3>
-            <p className="text-gray-400 text-sm">Our team is ready to help you find the perfect piping solution.</p>
+            <p className="text-gray-400 text-sm">Our team is ready to help you find the perfect  solution.</p>
           </div>
           <div className="flex flex-wrap gap-3">
             <Link href="/contact" className="bg-accent hover:bg-accent-dark px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-wider transition-colors">Send Inquiry</Link>
