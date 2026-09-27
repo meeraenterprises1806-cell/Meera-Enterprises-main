@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   creator: "Meera Enterprises",
   publisher: "Meera Enterprises",
   metadataBase: new URL(
-    process.env.NEXT_PUBLIC_SITE_URL || "https://radiatech.in",
+    process.env.NEXT_PUBLIC_SITE_URL || "https://meeraenterprises.in",
   ),
   alternates: { canonical: "/" },
   icons: {
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://radiatech.in";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://meeraenterprises.in";
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -108,9 +108,9 @@ const jsonLd = {
     longitude: 77.3219,
   },
   sameAs: [
-    "https://www.facebook.com/Radiatechelectra/",
-    "https://www.instagram.com/radia.tech?igsh=MTIwNzNkMG9tYmpvbg==",
-    "https://www.indiamart.com/radiatechelectra/",
+    "https://www.facebook.com/",
+    "https://www.instagram.com",
+    "https://www.indiamart.com/",
   ],
 };
 

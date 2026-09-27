@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export const metadata = {
   title: "Products - Meera Enterprises",
-  description: "Browse our complete range of PPR-C pipes, fittings, and industrial piping solutions.",
+  description: "Browse our complete range of Chairs, tables, home furniture, office furniture, home appliances, electric fans and lighting products for every solutions.",
 };
 
 export const dynamic = "force-dynamic";
@@ -20,17 +20,20 @@ export default async function ProductsPage() {
   return (
     <main className="bg-white">
       {/* Header */}
-      <section className="bg-gray-50 py-20 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-6">Our Products</h1>
-          <p className="text-lg text-gray-600 max-w-2xl mb-8">Comprehensive range of PPR-C pipes, fittings, and industrial piping solutions for all applications.</p>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/catalogue" className="bg-gray-900 hover:bg-black text-white px-8 py-3.5 rounded-lg font-bold flex items-center gap-2 transition-all">
+      <section className="page-hero-background relative min-h-44 overflow-hidden sm:min-h-52">
+        <div className="relative mx-auto flex min-h-44 max-w-7xl items-center px-6 py-6 sm:min-h-52 sm:py-8">
+          <div>
+            <p className="mb-3 text-xs font-semibold text-white/80">Home <span className="mx-2 text-accent">›</span> Products</p>
+            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Our <span className="text-accent">Products</span></h1>
+            <p className="mt-3 mb-6 max-w-2xl text-sm font-medium leading-relaxed text-white/90 sm:mb-7">Comprehensive range of chairs, tables, home furniture, office furniture, home appliances, electric fans and lighting products.</p>
+            <div className="flex flex-wrap gap-3">
+            <Link href="/catalogue" className="inline-flex items-center gap-2 bg-accent px-6 py-3 text-sm font-bold text-white transition hover:bg-accent-dark">
               View Catalogue <ArrowRight size={18} />
             </Link>
-            <a href="/RADIATECH-CATALOGUE.pdf" download className="border border-gray-300 hover:border-gray-900 text-gray-900 px-8 py-3.5 rounded-lg font-bold transition-all">
+            <Link href="/catalogue" className="inline-flex items-center border border-white/40 bg-white/10 px-6 py-3 text-sm font-bold text-white transition hover:bg-white/20">
               Download PDF
-            </a>
+            </Link>
+          </div>
           </div>
         </div>
       </section>
@@ -52,7 +55,7 @@ export default async function ProductsPage() {
                     <Link href={`/products/${cat.slug}`} className="flex-1 bg-gray-900 text-white text-center py-3 rounded-lg text-xs font-bold hover:bg-black transition-colors">
                       View Products
                     </Link>
-                    <EnquiryButton productName={cat.name} className="flex-1 border border-gray-200 text-gray-700 py-3 rounded-lg text-xs font-bold hover:bg-gray-50 transition-colors" />
+                    <EnquiryButton productName={cat.name} className="inline-flex flex-1 items-center justify-center rounded-lg bg-accent py-3 text-xs font-bold text-white transition-colors hover:bg-accent-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" />
                   </div>
                 </div>
               </div>
@@ -75,7 +78,7 @@ export default async function ProductsPage() {
                 <Link href={`/products/${product.categorySlug}/${product.id}`} className="font-bold text-gray-900 text-sm mb-4 block hover:text-accent transition-colors">
                   {product.name}
                 </Link>
-                <EnquiryButton productName={product.name} label="Inquire" className="w-full border border-gray-200 text-gray-700 py-2 rounded-lg text-[11px] font-bold hover:bg-gray-50" />
+                <EnquiryButton productName={product.name} label="Inquire" className="inline-flex w-full items-center justify-center rounded-lg bg-accent py-2 text-[11px] font-bold text-white transition-colors hover:bg-accent-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent" />
               </div>
             ))}
           </div>

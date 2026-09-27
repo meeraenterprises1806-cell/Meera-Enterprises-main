@@ -153,14 +153,13 @@ export default function Footer() {
                   </a>
                 </div>
               </li>
-              <li>
-                <a
-                  href={`mailto:${companyInfo.contact.email}`}
-                  className="flex items-center gap-2 hover:text-accent transition-colors text-xs"
-                >
-                  <Mail size={14} className="text-accent shrink-0" />{" "}
-                  {companyInfo.contact.email}
-                </a>
+              <li className="flex items-start gap-2 text-xs">
+                <Mail size={14} className="mt-0.5 shrink-0 text-accent" />
+                <div className="flex min-w-0 flex-wrap items-center gap-x-1.5">
+                  <a href={`mailto:${companyInfo.contact.email}`} className="transition-colors hover:text-accent">{companyInfo.contact.email}</a>
+                  <span aria-hidden="true">|</span>
+                  <a href="mailto:sales@meeraenterprise.in" className="transition-colors hover:text-accent">sales@meeraenterprise.in</a>
+                </div>
               </li>
             </ul>
             <div className="mt-3 flex gap-2">

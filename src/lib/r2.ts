@@ -10,7 +10,7 @@ const R2 = new S3Client({
   },
 });
 
-const BUCKET = process.env.R2_BUCKET_NAME || "radiatech-images";
+const BUCKET = process.env.R2_BUCKET_NAME || "meera-enterprises-image"; // Default bucket name if not set in env
 const PUBLIC_URL = process.env.R2_PUBLIC_URL || "";
 
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp", "image/gif"];

@@ -1,7 +1,7 @@
 import EnquiryButton from "@/components/EnquiryButton";
 import { companyInfo } from "@/data/company";
 import { getPublicCategories, getPublicCategoryBySlug, getPublicProductsByCategory } from "@/lib/publicProducts";
-import { ArrowRight, ChevronRight, MessageSquare, Phone } from "lucide-react";
+import { ArrowRight, MessageSquare, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
@@ -42,15 +42,19 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
   return (
     <main className="bg-white">
       {/* Header */}
-      <section className="bg-gray-50 py-16 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center gap-2 text-gray-500 text-xs font-bold uppercase tracking-widest mb-4">
-            <Link href="/products" className="hover:text-accent">Products</Link>
-            <ChevronRight size={14} />
-            <span>{cat.name}</span>
+      <section className="page-hero-background relative min-h-44 overflow-hidden sm:min-h-52">
+        <div className="relative mx-auto flex min-h-44 max-w-7xl items-center px-6 py-6 sm:min-h-52 sm:py-8">
+          <div>
+            <p className="mb-3 text-xs font-semibold text-white/80">
+              <Link href="/" className="transition hover:text-white">Home</Link>
+              <span className="mx-2 text-accent">›</span>
+              <Link href="/products" className="transition hover:text-white">Products</Link>
+              <span className="mx-2 text-accent">›</span>
+              {cat.name}
+            </p>
+            <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl">{cat.name}</h1>
+            <p className="mt-3 max-w-2xl text-sm font-medium leading-relaxed text-white/90">{cat.description}</p>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight mb-4">{cat.name}</h1>
-          <p className="text-gray-600 text-lg max-w-2xl">{cat.description}</p>
         </div>
       </section>
 

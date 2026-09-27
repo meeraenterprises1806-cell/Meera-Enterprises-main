@@ -4,7 +4,7 @@ import { Clock, ExternalLink, Mail, MapPin, Phone } from "lucide-react";
 
 export const metadata = {
   title: "Contact Us - Meera Enterprises",
-  description: "Get in touch with Meera Enterprises for PPR-C pipes, fittings, and industrial piping solutions.",
+  description: "Get in touch with Meera Enterprises for chairs, tables, home furniture, office furniture, home appliances, electric fans and lighting products solutions.",
 };
 
 export default function ContactPage() {
@@ -30,7 +30,6 @@ export default function ContactPage() {
                 {[
                   { icon: Phone, label: "Phone-1", value: companyInfo.contact.phone1, href: `tel:${companyInfo.contact.phone1}` },
                   { icon: Phone, label: "Phone-2", value: companyInfo.contact.phone2, href: `tel:${companyInfo.contact.phone2}` },
-                  { icon: Mail, label: "Email", value: companyInfo.contact.email, href: `mailto:${companyInfo.contact.email}` },
                 ].map((item) => (
                   <div key={item.label} className="flex gap-4 border-b border-gray-100 pb-5">
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-accent/10">
@@ -42,6 +41,20 @@ export default function ContactPage() {
                     </div>
                   </div>
                 ))}
+
+                <div className="flex gap-4 border-b border-gray-100 pb-5">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-accent/10">
+                    <Mail size={20} className="text-accent" />
+                  </div>
+                  <div className="min-w-0">
+                    <h3 className="text-sm font-bold text-primary">Email</h3>
+                    <div className="mt-1 flex flex-wrap items-center gap-x-2 text-sm">
+                      <a href={`mailto:${companyInfo.contact.email}`} className="text-gray-600 transition-colors hover:text-accent">{companyInfo.contact.email}</a>
+                      <span className="text-gray-400" aria-hidden="true">|</span>
+                      <a href="mailto:sales@meeraenterprise.in" className="text-gray-600 transition-colors hover:text-accent">sales@meeraenterprise.in</a>
+                    </div>
+                  </div>
+                </div>
                 
                 {companyInfo.addresses.map((addr) => (
                   <div key={addr.label} className="flex gap-4 border-b border-gray-100 pb-5">

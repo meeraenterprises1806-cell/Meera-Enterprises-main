@@ -37,7 +37,7 @@ export default async function InfrastructurePage() {
               <div className="flex justify-between gap-4 py-3 text-sm"><dt className="text-gray-500">Established</dt><dd className="font-semibold text-gray-900">2026</dd></div>
               <div className="flex justify-between gap-4 py-3 text-sm"><dt className="text-gray-500">Experience</dt><dd className="font-semibold text-gray-900">1 Years</dd></div>
               <div className="flex justify-between gap-4 py-3 text-sm"><dt className="text-gray-500">Location</dt><dd className="max-w-[65%] text-right font-semibold text-gray-900">Tirumalagiri, Secunderabad, Hyderabad, Telangana – 500015</dd></div>
-              <div className="flex justify-between gap-4 py-3 text-sm"><dt className="text-gray-500">Website</dt><dd className="text-right font-semibold text-gray-900"><a href="http://www.meera-enterprises-main.vercel.app/" target="_blank" rel="noreferrer" className="break-all text-primary hover:text-accent">www.meera-enterprises-main.vercel.app</a></dd></div>
+              <div className="flex justify-between gap-4 py-3 text-sm"><dt className="text-gray-500">Website</dt><dd className="text-right font-semibold text-gray-900"><a href="http://www.meeraenterprise.in/" target="_blank" rel="noreferrer" className="break-all text-primary hover:text-accent">www.meeraenterprise.in</a></dd></div>
             </dl>
           </section>
 
