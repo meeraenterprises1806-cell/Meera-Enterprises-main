@@ -87,8 +87,9 @@ export default function Footer() {
                 { label: "About Us", href: "/about" },
                 { label: "Products", href: "/products" },
                 { label: "Catalogue", href: "/catalogue" },
-                { label: "Certificates", href: "/infrastructure" },
-                { label: "Brands We Deal In", href: "/clients" },
+                { label: "Certificates", href: "/certificates" },
+                { label: "Brands We Deal In", href: "/brand" },
+                { label: "Sub-Dealer", href: "/subdealer" },
                 { label: "Blogs", href: "/blogs" },
                 { label: "Contact", href: "/contact" },
               ].map((link) => (
