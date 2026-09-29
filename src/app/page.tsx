@@ -6,25 +6,25 @@ import { companyInfo } from "@/data/company";
 import { getRecentPublishedBlogs, parseBlogImages } from "@/lib/publicBlogs";
 import { getPublicBrands, getPublicProjectImages } from "@/lib/publicGalleries";
 import {
-    getPublicCategories,
-    getPublicFeaturedProducts,
-    getPublicNewArrivals,
+  getPublicCategories,
+  getPublicFeaturedProducts,
+  getPublicNewArrivals,
 } from "@/lib/publicProducts";
 import {
-    ArrowRight,
-    Award,
-    Calendar,
-    CheckCircle,
-    ChevronRight,
-    Clock,
-    Factory,
-    Phone,
-    Shield,
-    Star,
-    Tag,
-    Truck,
-    Users,
-    Wrench,
+  ArrowRight,
+  Award,
+  Calendar,
+  CheckCircle,
+  ChevronRight,
+  Clock,
+  Factory,
+  Phone,
+  Shield,
+  Star,
+  Tag,
+  Truck,
+  Users,
+  Wrench,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -239,14 +239,14 @@ export default async function HomePage() {
               >
                 <Link
                   href={`/products/${cat.slug}`}
-                  className="relative h-60 overflow-hidden block"
+                  className="relative block h-60 overflow-hidden bg-gray-50"
                 >
                   <Image
                     src={cat.image}
                     alt={cat.name}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="object-contain"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-6 left-6 right-6">
@@ -317,14 +317,14 @@ export default async function HomePage() {
               >
                 <Link
                   href={`/products/${product.categorySlug}/${product.id}`}
-                  className="relative h-40 sm:h-56 overflow-hidden block"
+                  className="relative block h-40 overflow-hidden bg-gray-50 sm:h-56"
                 >
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
                     sizes="(min-width: 1024px) 25vw, 50vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="object-contain"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-accent text-white text-[10px] font-extrabold px-3 py-1 rounded-full tracking-widest uppercase">
@@ -387,14 +387,14 @@ export default async function HomePage() {
               >
                 <Link
                   href={`/products/${product.categorySlug}/${product.id}`}
-                  className="relative h-40 sm:h-56 overflow-hidden block"
+                  className="relative block h-40 overflow-hidden bg-gray-50 sm:h-56"
                 >
                   <Image
                     src={product.image}
                     alt={product.name}
                     fill
                     sizes="(min-width: 1024px) 25vw, 50vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    className="object-contain"
                   />
                   <div className="absolute top-4 left-4">
                     <span className="bg-primary text-white text-[10px] font-extrabold px-3 py-1 rounded-full tracking-widest uppercase">
@@ -711,7 +711,7 @@ export default async function HomePage() {
               Ratings & Reviews
             </h2>
             <p className="text-gray-600 max-w-xl mx-auto">
-              See what our customers say about us on Gem Portal.
+              See what our customers say about us on GeM Portal.
             </p>
           </div>
 

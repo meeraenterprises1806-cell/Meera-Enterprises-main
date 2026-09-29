@@ -24,7 +24,7 @@ export default function TrendingCarousel({ images }: { images: PublicGalleryImag
               fill
               priority={!duplicate && index === 0}
               sizes="(min-width: 1024px) 340px, (min-width: 640px) 320px, 78vw"
-              className="object-cover"
+              className="object-contain"
             />
           </div>
           <div className="flex min-h-16 items-center px-4 py-3">

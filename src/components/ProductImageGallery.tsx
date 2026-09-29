@@ -18,7 +18,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
   return (
     <div className="space-y-6">
       <div className="overflow-hidden bg-gray-50 shadow-lg">
-        <Image src={activeImage} alt={productName} width={600} height={500} priority className="h-[300px] w-full object-cover sm:h-[400px]" />
+        <Image src={activeImage} alt={productName} width={600} height={500} priority className="h-[300px] w-full object-contain sm:h-[400px]" />
       </div>
 
       {galleryImages.length > 1 && (
@@ -35,7 +35,7 @@ export default function ProductImageGallery({ images, productName }: ProductImag
                   className={`relative aspect-square overflow-hidden border bg-gray-50 transition ${isActive ? "border-primary ring-2 ring-primary/20" : "border-gray-100 hover:border-primary/50"}`}
                   aria-label={`Show ${productName} image ${index + 1}`}
                 >
-                  <Image src={image} alt={`${productName} gallery ${index + 1}`} fill sizes="(max-width: 640px) 33vw, 160px" className="object-cover" />
+                  <Image src={image} alt={`${productName} gallery ${index + 1}`} fill sizes="(max-width: 640px) 33vw, 160px" className="object-contain" />
                 </button>
               );
             })}

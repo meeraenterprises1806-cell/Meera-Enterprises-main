@@ -45,8 +45,8 @@ export default async function ProductsPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {categories.map((cat) => (
               <div key={cat.slug} className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl transition-all">
-                <Link href={`/products/${cat.slug}`} className="relative h-64 overflow-hidden block">
-                  <Image src={cat.image} alt={cat.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Link href={`/products/${cat.slug}`} className="relative block h-64 overflow-hidden bg-gray-50">
+                  <Image src={cat.image} alt={cat.name} fill className="object-contain" />
                 </Link>
                 <div className="p-6">
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{cat.name}</h3>
@@ -71,8 +71,8 @@ export default async function ProductsPage() {
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
             {newArrivals.map((product) => (
               <div key={product.id} className="bg-white p-4 rounded-xl border border-gray-100 hover:shadow-md transition-all">
-                <Link href={`/products/${product.categorySlug}/${product.id}`} className="relative h-48 mb-4 overflow-hidden rounded-lg block">
-                  <Image src={product.image} alt={product.name} fill className="object-cover" />
+                <Link href={`/products/${product.categorySlug}/${product.id}`} className="relative mb-4 block h-48 overflow-hidden rounded-lg bg-gray-50">
+                  <Image src={product.image} alt={product.name} fill className="object-contain" />
                   <span className="absolute top-2 left-2 bg-accent text-white text-[10px] font-bold px-2 py-1 rounded">NEW</span>
                 </Link>
                 <Link href={`/products/${product.categorySlug}/${product.id}`} className="font-bold text-gray-900 text-sm mb-4 block hover:text-accent transition-colors">

@@ -64,8 +64,8 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {products.map((product) => (
               <div key={product.id} className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-xl transition-all">
-                <Link href={`/products/${category}/${product.id}`} className="relative h-64 overflow-hidden block">
-                  <Image src={product.image} alt={product.name} fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
+                <Link href={`/products/${category}/${product.id}`} className="relative block h-64 overflow-hidden bg-gray-50">
+                  <Image src={product.image} alt={product.name} fill className="object-contain" />
                   {product.isNewArrival && (
                     <span className="absolute top-4 left-4 bg-accent text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">New</span>
                   )}
