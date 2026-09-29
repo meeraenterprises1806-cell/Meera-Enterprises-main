@@ -711,7 +711,7 @@ export default async function HomePage() {
               Ratings & Reviews
             </h2>
             <p className="text-gray-600 max-w-xl mx-auto">
-              See what our customers say about us on IndiaMART.
+              See what our customers say about us on Gem Portal.
             </p>
           </div>
 
